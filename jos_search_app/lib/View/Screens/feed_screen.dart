@@ -6,9 +6,10 @@ import '../Widgets/custom_divider.dart';
 import '../Widgets/search_bar.dart';
 import '../Widgets/post_job_button.dart';
 import '../Widgets/primary_button.dart';
+import '../Screens/job_details_screen.dart';
 
-class Feed extends StatelessWidget {
-  const Feed({Key? key}) : super(key: key);
+class FeedScreen extends StatelessWidget {
+  const FeedScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,10 @@ class Feed extends StatelessWidget {
                     ),
                     PrimaryButton(
                       text: 'Search',
-                      event: () {},
+                      event: () {
+                        Navigator.of(context)
+                            .pushNamed(JobDetailsScreen.routeName);
+                      },
                     ),
                     const Expanded(child: SizedBox()),
                     PostJobButton(),

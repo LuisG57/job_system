@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'View/Screens/feed.dart';
+import 'View/Screens/feed_screen.dart';
+import 'View/Screens/job_details_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (ctx) => Feed(),
+        '/': (ctx) => FeedScreen(),
+        JobDetailsScreen.routeName: (ctx) => JobDetailsScreen(),
       },
       // home: MyHomePage(title: 'Flutter Demo Home Page'),
     );

@@ -9,7 +9,7 @@ class PrimaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        event;
+        event();
       },
       child: Text(text),
       style: ButtonStyle(
