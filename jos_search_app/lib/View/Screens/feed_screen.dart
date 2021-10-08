@@ -6,9 +6,9 @@ import '../Widgets/custom_divider.dart';
 import '../Widgets/search_bar.dart';
 import '../Widgets/post_job_button.dart';
 import '../Widgets/primary_button.dart';
-import '../Screens/job_details_screen.dart';
 import '../Widgets/gradient_background/gradient_background.dart';
 import '../Widgets/gradient_background/gradient_top_bar.dart';
+import '../Screens/lading_screen.dart';
 
 class FeedScreen extends StatelessWidget {
   const FeedScreen({Key? key}) : super(key: key);
@@ -45,7 +45,7 @@ class FeedScreen extends StatelessWidget {
                               text: 'Search',
                               event: () {
                                 Navigator.of(context)
-                                    .pushNamed(JobDetailsScreen.routeName);
+                                    .pushNamed(LandingScreen.routeName);
                               },
                             ),
                             const Expanded(child: SizedBox()),

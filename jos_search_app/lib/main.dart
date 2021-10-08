@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jos_search_app/View/Screens/lading_screen.dart';
 
 import 'View/Screens/feed_screen.dart';
 import 'View/Screens/job_details_screen.dart';
@@ -29,8 +30,8 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (ctx) => FeedScreen(),
-        JobDetailsScreen.routeName: (ctx) => JobDetailsScreen(),
+        '/': (ctx) => LandingScreen(),
+        //LandingScreen.routeName: (ctx) => LandingScreen(),
       },
       // home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
