@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jos_search_app/View/Screens/sign_in_screen.dart';
 import 'package:jos_search_app/View/Widgets/call_to_action/call_to_action.dart';
 import 'package:jos_search_app/View/Widgets/gradient_background/gradient_background_white_board.dart';
 import '../page_details/page_details.dart';
@@ -43,7 +44,11 @@ class NavigationBar extends StatelessWidget {
               PageDetails(),
               Expanded(
                 child: Center(
-                  child: CallToAction('Empezar a buscar!'),
+                  child: GestureDetector(
+                    child: CallToAction('Empezar a buscar!'),
+                    onTap: () =>
+                        Navigator.pushNamed(context, SignInScreen.routeName),
+                  ),
                 ),
               ),
             ],
