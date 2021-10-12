@@ -8,6 +8,7 @@ class AboutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GradientBackgroundWhiteBoard(Text('das'));
+    return GradientBackgroundWhiteBoard(
+        Scaffold(body: Center(child: Container(child: Text('tetas')))));
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jos_search_app/View/Screens/lading_screen.dart';
+import 'package:jos_search_app/View/Screens/sign_screens/sign_up_screen_poster.dart';
 import 'View/Screens/feed_screen.dart';
 import 'View/Screens/job_details_screen.dart';
 import 'View/Screens/sign_in_screen.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
         SignInScreen.routeName: (ctx) => SignInScreen(),
         SignUpScreen.routeName: (ctx) => SignUpScreen(),
         AboutScreen.routeName: (ctx) => AboutScreen(),
+        SignUpScreenPoster.routeName: (ctx) => SignUpScreenPoster(),
 
         //LandingScreen.routeName: (ctx) => LandingScreen(),
       },
