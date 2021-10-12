@@ -3,6 +3,8 @@ import 'package:jos_search_app/View/Screens/lading_screen.dart';
 import 'View/Screens/feed_screen.dart';
 import 'View/Screens/job_details_screen.dart';
 import 'View/Screens/sign_in_screen.dart';
+import './View/Screens/sign_up_screen.dart';
+import 'View/Screens/about_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -32,6 +34,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (ctx) => LandingScreen(),
         SignInScreen.routeName: (ctx) => SignInScreen(),
+        SignUpScreen.routeName: (ctx) => SignUpScreen(),
+        AboutScreen.routeName: (ctx) => AboutScreen(),
 
         //LandingScreen.routeName: (ctx) => LandingScreen(),
       },

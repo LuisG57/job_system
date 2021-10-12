@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:jos_search_app/View/Screens/sign_in_screen.dart';
+import 'package:jos_search_app/View/Screens/sign_up_screen.dart';
+import 'package:jos_search_app/View/Widgets/navigation_bar/sign_up_desicion.dart';
 import '../gradient_background/gradient_background_white_board.dart';
 
 class SignInWidget extends StatelessWidget {
@@ -35,7 +38,11 @@ class SignInWidget extends StatelessWidget {
                   TextButton(
                       onPressed: () {},
                       child: Text('Olvidaste tu contraseña?')),
-                  TextButton(onPressed: () {}, child: Text('Registrarme'))
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, SignUpScreen.routeName);
+                      },
+                      child: Text('Registrarme'))
                 ],
               ),
               ElevatedButton(
