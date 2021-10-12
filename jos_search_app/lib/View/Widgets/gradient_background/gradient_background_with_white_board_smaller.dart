@@ -11,7 +11,7 @@ class GradientBackgroundWhiteBoardSmaller extends StatelessWidget {
     return Stack(alignment: Alignment.center, children: [
       GradientBackGround(),
       Padding(
-        padding: EdgeInsets.symmetric(horizontal: 300, vertical: 125),
+        padding: EdgeInsets.symmetric(horizontal: 50, vertical: 100),
         child: ClipRRect(
             borderRadius: BorderRadius.circular(16),
             child: Container(
