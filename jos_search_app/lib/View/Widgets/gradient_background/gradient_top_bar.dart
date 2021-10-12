@@ -13,25 +13,31 @@ class GradientTopBar extends StatelessWidget {
             Color.fromRGBO(0, 206, 209, 1)
           ])),
       width: double.infinity,
-      height: 75,
+      height: 150,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Icon(Icons.ac_unit),
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Image.asset('images/about_us_icon.png'),
+          ),
           Row(
             children: [
               CircleAvatar(),
               Padding(
                 padding: const EdgeInsets.only(top: 14, left: 20, right: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Frankelly Guzman'),
-                    TextButton(
-                      onPressed: () {},
-                      child: Text('Log out'),
-                    ),
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 38),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Frankelly Guzman'),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text('Log out'),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Padding(

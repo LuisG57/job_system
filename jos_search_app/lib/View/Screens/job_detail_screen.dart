@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import '../Widgets/gradient_background/gradient_background_white_board.dart';
+import 'package:jos_search_app/View/Widgets/navigation_bar/job_detail.dart';
 
 class JobDetailScreen extends StatelessWidget {
   const JobDetailScreen({Key? key}) : super(key: key);
+  static const routeName = '/';
 
   @override
   Widget build(BuildContext context) {
-    return GradientBackgroundWhiteBoard(Text('dasd'));
+    return JobDetail();
   }
 }

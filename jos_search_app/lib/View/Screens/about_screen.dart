@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../Widgets/gradient_background/gradient_background_white_board.dart';
+import '../Widgets/navigation_bar/about_us.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({Key? key}) : super(key: key);
@@ -8,7 +8,6 @@ class AboutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GradientBackgroundWhiteBoard(
-        Scaffold(body: Center(child: Container(child: Text('tetas')))));
+    return AboutUs();
   }
 }
