@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jos_search_app/View/Screens/lading_screen.dart';
+import 'package:jos_search_app/View/Screens/post_form_screen/post_form_screen.dart';
+import 'package:jos_search_app/View/Screens/sign_screens/sign_up_screen_poster.dart';
+import 'package:jos_search_app/View/Screens/sign_screens/sign_up_screen_searcher.dart';
 import 'package:jos_search_app/providers/puesto.dart';
 import 'View/Screens/feed_screen.dart';
 import 'View/Screens/job_detail_screen.dart';
@@ -42,6 +45,9 @@ class MyApp extends StatelessWidget {
           SignInScreen.routeName: (ctx) => SignInScreen(),
           SignUpScreen.routeName: (ctx) => SignUpScreen(),
           AboutScreen.routeName: (ctx) => AboutScreen(),
+          SignUpScreenPostere.routeName: (ctx) => SignUpScreenPostere(),
+          SignUpScreenSearcher.routeName: (ctx) => SignUpScreenSearcher(),
+          PostFormScreen.routeName: (ctx) => PostFormScreen(),
 
           //LandingScreen.routeName: (ctx) => LandingScreen(),
         },
