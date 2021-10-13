@@ -3,15 +3,15 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class Usuario {
-  final String idUsuario;
+  final int idUsuario;
   final String nombre;
   final String apellido;
   final String idTipoUsuario;
   final String clave;
   final String correo;
-  final String estatus;
-  final String fechaCreacion;
-  final String idCategoria;
+  final bool estatus;
+  final DateTime fechaCreacion;
+  final int idCategoria;
   final String descripcion;
   final String logoUrl;
   final String websiteUrl;
@@ -33,8 +33,7 @@ class Usuario {
 
 class UsuarioProvedor with ChangeNotifier {
   Future<void> createAccount(Usuario user) async {
-    final url = Uri.parse(
-        'https://flutter-course-9fa9a-default-rtdb.firebaseio.com/test.json');
+    final url = Uri.parse('http://45.35.64.173:9095/api/Usuario');
 
     try {
       final response = await http.post(url,
@@ -66,6 +65,24 @@ class UsuarioProvedor with ChangeNotifier {
           descripcion: user.descripcion,
           logoUrl: user.logoUrl,
           websiteUrl: user.websiteUrl);
+    } catch (error) {
+      print(error);
+      throw error;
+    }
+
+    notifyListeners();
+  }
+
+  Future<void> signIn(String correo, String clave) async {
+    final url = Uri.parse(
+        'https://flutter-course-9fa9a-default-rtdb.firebaseio.com/test.json');
+
+    try {
+      final response = await http.post(url,
+          body: json.encode({
+            'correo': correo,
+            'clave': clave,
+          }));
     } catch (error) {
       print(error);
       throw error;

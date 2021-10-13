@@ -78,9 +78,6 @@ class SignUpScreenSearcher extends StatelessWidget {
                                   SignUpTextFormField(
                                       hintText: 'Correo Electronico',
                                       Width: 350),
-                                  SizedBox(
-                                    width: 25,
-                                  ),
                                   SignUpTextFormField(
                                       hintText: 'Contraseña', Width: 250),
                                 ],
@@ -108,17 +105,18 @@ class SignUpScreenSearcher extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  SignUpTextFormField(
-                                      hintText: 'Web site', Width: 300),
-                                  SizedBox(
-                                    width: 25,
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8.0),
+                                child: Container(
+                                  width: 600,
+                                  child: TextFormField(
+                                    decoration: InputDecoration(
+                                        hintText: 'Descripcion...',
+                                        border: OutlineInputBorder()),
+                                    maxLines: 4,
                                   ),
-                                  SignUpTextFormField(
-                                      hintText: 'Logo Url', Width: 300),
-                                ],
+                                ),
                               ),
                             ],
                           ),

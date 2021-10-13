@@ -4,8 +4,8 @@ import 'package:jos_search_app/View/Widgets/form_widgets/sign_up_text_form_field
 import 'package:jos_search_app/View/Widgets/gradient_background/gradient_background.dart';
 import 'package:jos_search_app/View/Widgets/gradient_background/gradient_background_white_board.dart';
 
-class SignUpScreenPostere extends StatelessWidget {
-  const SignUpScreenPostere({Key? key}) : super(key: key);
+class SignUpScreenPoster extends StatelessWidget {
+  const SignUpScreenPoster({Key? key}) : super(key: key);
   static const routeName = '/sign-up-poster';
 
   @override
@@ -78,6 +78,9 @@ class SignUpScreenPostere extends StatelessWidget {
                                   SignUpTextFormField(
                                       hintText: 'Correo Electronico',
                                       Width: 350),
+                                  SizedBox(
+                                    width: 25,
+                                  ),
                                   SignUpTextFormField(
                                       hintText: 'Contraseña', Width: 250),
                                 ],
@@ -105,18 +108,17 @@ class SignUpScreenPostere extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 8.0),
-                                child: Container(
-                                  width: 600,
-                                  child: TextFormField(
-                                    decoration: InputDecoration(
-                                        hintText: 'Descripcion...',
-                                        border: OutlineInputBorder()),
-                                    maxLines: 4,
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SignUpTextFormField(
+                                      hintText: 'Web site', Width: 300),
+                                  SizedBox(
+                                    width: 25,
                                   ),
-                                ),
+                                  SignUpTextFormField(
+                                      hintText: 'Logo Url', Width: 300),
+                                ],
                               ),
                             ],
                           ),

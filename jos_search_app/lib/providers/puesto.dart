@@ -34,8 +34,7 @@ class Puesto with ChangeNotifier {
   // Map<String, PuestoItem> _puestoItems = {};
 
   Future<void> addPuestoItem(PuestoItem puestoitem) async {
-    final url = Uri.parse(
-        'https://flutter-course-9fa9a-default-rtdb.firebaseio.com/test.json');
+    final url = Uri.parse('');
 
     try {
       final response = await http.post(url,
@@ -78,8 +77,7 @@ class Puesto with ChangeNotifier {
         _puestoItems.indexWhere((element) => element.idPuesto == id);
 
     if (puestoIndex >= 0) {
-      final url = Uri.parse(
-          'https://flutter-course-9fa9a-default-rtdb.firebaseio.com/products/$id.json');
+      final url = Uri.parse('');
       await http.patch(url,
           body: json.encode({
             'idPuesto': newPuestoItem.idPuesto,
@@ -102,8 +100,7 @@ class Puesto with ChangeNotifier {
   }
 
   Future<void> deletePuestoItem(String id) async {
-    final url = Uri.parse(
-        'https://flutter-course-9fa9a-default-rtdb.firebaseio.com/products/$id.json');
+    final url = Uri.parse('');
     final existingPuestoItemIndex =
         _puestoItems.indexWhere((item) => item.idPuesto == id);
     PuestoItem? existingProduct = _puestoItems[existingPuestoItemIndex];
@@ -120,8 +117,7 @@ class Puesto with ChangeNotifier {
   }
 
   Future<void> fetchAndSetPuestoItems() async {
-    final url = Uri.parse(
-        'https://flutter-course-9fa9a-default-rtdb.firebaseio.com/products.json');
+    final url = Uri.parse('');
     try {
       final response = await http.get(url);
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
