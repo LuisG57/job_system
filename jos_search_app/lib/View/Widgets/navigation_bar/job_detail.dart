@@ -45,6 +45,7 @@ class JobDetail extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text('Position: Back-End Programmer'),
@@ -56,6 +57,8 @@ class JobDetail extends StatelessWidget {
                           ],
                         ),
                         Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text('Oct, 4th 2021'),
                             Text('Santo Domingo, DR'),

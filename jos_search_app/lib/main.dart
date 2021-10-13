@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:jos_search_app/View/Screens/lading_screen.dart';
+import 'package:jos_search_app/providers/puesto.dart';
 import 'View/Screens/feed_screen.dart';
 import 'View/Screens/job_detail_screen.dart';
 import 'View/Screens/job_details_screen.dart';
 import 'View/Screens/sign_in_screen.dart';
 import './View/Screens/sign_up_screen.dart';
 import 'View/Screens/about_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,33 +17,36 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-        textTheme: Theme.of(context).textTheme.apply(fontFamily: 'Open Sans'),
-      ),
-      initialRoute: '/',
-      routes: {
-        '/': (ctx) => JobDetailScreen(),
-        // '/': (ctx) => LandingScreen(), I commented this to test job detail go back to this when done ma g
-        SignInScreen.routeName: (ctx) => SignInScreen(),
-        SignUpScreen.routeName: (ctx) => SignUpScreen(),
-        AboutScreen.routeName: (ctx) => AboutScreen(),
+    return MultiProvider(
+      providers: [ChangeNotifierProvider(create: (ctx) => Puesto())],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          // This is the theme of your application.
+          //
+          // Try running your application with "flutter run". You'll see the
+          // application has a blue toolbar. Then, without quitting the app, try
+          // changing the primarySwatch below to Colors.green and then invoke
+          // "hot reload" (press "r" in the console where you ran "flutter run",
+          // or simply save your changes to "hot reload" in a Flutter IDE).
+          // Notice that the counter didn't reset back to zero; the application
+          // is not restarted.
+          primarySwatch: Colors.blue,
+          textTheme: Theme.of(context).textTheme.apply(fontFamily: 'Open Sans'),
+        ),
+        initialRoute: '/',
+        routes: {
+          '/': (ctx) => JobDetailScreen(),
+          // '/': (ctx) => LandingScreen(), I commented this to test job detail go back to this when done ma g
+          SignInScreen.routeName: (ctx) => SignInScreen(),
+          SignUpScreen.routeName: (ctx) => SignUpScreen(),
+          AboutScreen.routeName: (ctx) => AboutScreen(),
 
-        //LandingScreen.routeName: (ctx) => LandingScreen(),
-      },
-      // home: MyHomePage(title: 'Flutter Demo Home Page'),
+          //LandingScreen.routeName: (ctx) => LandingScreen(),
+        },
+        // home: MyHomePage(title: 'Flutter Demo Home Page'),
+      ),
     );
   }
 }
