@@ -100,34 +100,57 @@ class _SignUpScreenPosterState extends State<SignUpScreenPoster> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  SignUpTextFormField(
-                                      hintText: 'Nombre', Width: 300),
+                                  Container(
+                                    width: 300,
+                                    child: TextFormField(
+                                      decoration:
+                                          InputDecoration(hintText: 'Nombre'),
+                                    ),
+                                  ),
                                   SizedBox(
                                     width: 25,
                                   ),
-                                  SignUpTextFormField(
-                                      hintText: 'Apellido', Width: 300),
+                                  Container(
+                                    width: 300,
+                                    child: TextFormField(
+                                      decoration:
+                                          InputDecoration(hintText: 'Apellido'),
+                                    ),
+                                  ),
                                 ],
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  SignUpTextFormField(
-                                      hintText: 'Correo Electronico',
-                                      Width: 350),
+                                  Container(
+                                    width: 350,
+                                    child: TextFormField(
+                                      decoration: InputDecoration(
+                                          hintText: 'Correo Electronico'),
+                                    ),
+                                  ),
                                   SizedBox(
                                     width: 25,
                                   ),
-                                  SignUpTextFormField(
-                                      hintText: 'Contraseña', Width: 250),
+                                  Container(
+                                    width: 250,
+                                    child: TextFormField(
+                                      decoration: InputDecoration(
+                                          hintText: 'Contraseña'),
+                                    ),
+                                  ),
                                 ],
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  SignUpTextFormField(
-                                      hintText: 'Numero de Teléfono',
-                                      Width: 350),
+                                  Container(
+                                    width: 350,
+                                    child: TextFormField(
+                                      decoration: InputDecoration(
+                                          hintText: 'Numero de Teléfono'),
+                                    ),
+                                  ),
                                   SizedBox(
                                     width: 25,
                                   ),
@@ -148,13 +171,23 @@ class _SignUpScreenPosterState extends State<SignUpScreenPoster> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  SignUpTextFormField(
-                                      hintText: 'Web site', Width: 300),
+                                  Container(
+                                    width: 300,
+                                    child: TextFormField(
+                                      decoration:
+                                          InputDecoration(hintText: 'Web site'),
+                                    ),
+                                  ),
                                   SizedBox(
                                     width: 25,
                                   ),
-                                  SignUpTextFormField(
-                                      hintText: 'Logo Url', Width: 300),
+                                  Container(
+                                    width: 300,
+                                    child: TextFormField(
+                                      decoration:
+                                          InputDecoration(hintText: 'Logo Url'),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ],
