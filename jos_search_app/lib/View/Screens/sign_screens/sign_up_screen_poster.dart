@@ -3,10 +3,47 @@ import 'package:jos_search_app/View/Widgets/form_widgets/sign_up_button.dart';
 import 'package:jos_search_app/View/Widgets/form_widgets/sign_up_text_form_field.dart';
 import 'package:jos_search_app/View/Widgets/gradient_background/gradient_background.dart';
 import 'package:jos_search_app/View/Widgets/gradient_background/gradient_background_white_board.dart';
+import 'package:jos_search_app/providers/usuario.dart';
+import 'package:jos_search_app/providers/usuario_provedor.dart';
+import 'package:provider/provider.dart';
 
-class SignUpScreenPoster extends StatelessWidget {
+class SignUpScreenPoster extends StatefulWidget {
   const SignUpScreenPoster({Key? key}) : super(key: key);
   static const routeName = '/sign-up-poster';
+
+  @override
+  State<SignUpScreenPoster> createState() => _SignUpScreenPosterState();
+}
+
+class _SignUpScreenPosterState extends State<SignUpScreenPoster> {
+  var nuevoUsuario = Usuario(
+      idUsuario: 0,
+      nombre: '',
+      apellido: '',
+      idTipoUsuario: '',
+      clave: '',
+      correo: '',
+      estatus: true,
+      fechaCreacion: DateTime.now(),
+      idCategoria: 0,
+      descripcion: '',
+      logoUrl: '',
+      websiteUrl: '');
+
+  var _initValues = {
+    'idUsuario': DateTime.now().toString(),
+    'nombre': '',
+    'apellido': '',
+    'idTipoUsuario': '',
+    'clave': '',
+    'correo': '',
+    'estatus': '',
+    'fechaCreacion': '',
+    'idCategoria': '',
+    'descripcion': '',
+    'logoUrl': '',
+    'websiteUrl': ''
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +161,13 @@ class SignUpScreenPoster extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SignUpButton(buttonText: 'Crear Cuenta', function: () {}),
+                      SignUpButton(
+                          buttonText: 'Crear Cuenta',
+                          function: () {
+                            final nuevousuario =
+                                Provider.of<UsuarioProvedor>(context);
+                            nuevousuario.createAccount(nuevoUsuario);
+                          }),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 16.0),
                         child: Row(

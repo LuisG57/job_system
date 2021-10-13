@@ -4,6 +4,8 @@ import 'package:jos_search_app/View/Screens/post_form_screen/post_form_screen.da
 import 'package:jos_search_app/View/Screens/sign_screens/sign_up_screen_searcher.dart';
 import 'package:jos_search_app/View/Screens/sign_screens/sign_up_screen_poster.dart';
 import 'package:jos_search_app/providers/puesto.dart';
+import 'package:jos_search_app/providers/usuario.dart';
+import 'package:jos_search_app/providers/usuario_provedor.dart';
 import 'View/Screens/feed_screen.dart';
 import 'View/Screens/job_detail_screen.dart';
 import 'View/Screens/job_details_screen.dart';
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (ctx) => Puesto())],
+      providers: [ChangeNotifierProvider(create: (ctx) => UsuarioProvedor())],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
