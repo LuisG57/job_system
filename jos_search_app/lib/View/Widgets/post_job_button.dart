@@ -5,17 +5,43 @@ class PostJobButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {},
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          const Icon(Icons.post_add),
-          const Text('Post a job'),
-        ],
+    return InkWell(
+      borderRadius: BorderRadius.circular(30),
+      onTap: () {},
+      child: Container(
+        padding: const EdgeInsets.only(right: 3),
+        child: Row(
+          children: [
+            CircleAvatar(
+              child: Icon(
+                Icons.add,
+                color: Colors.white,
+              ),
+              backgroundColor: Colors.greenAccent,
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            Text(
+              'Postear Oferta',
+              style: TextStyle(color: Colors.greenAccent, fontSize: 20),
+            )
+          ],
+        ),
       ),
-      style:
-          ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.green)),
     );
   }
 }
+
+// ElevatedButton(
+//       onPressed: () {},
+//       child: Row(
+//         mainAxisAlignment: MainAxisAlignment.spaceAround,
+//         children: [
+//           const Icon(Icons.post_add),
+//           const Text('Post a job'),
+//         ],
+//       ),
+//       style:
+//           ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.green)),
+//     );

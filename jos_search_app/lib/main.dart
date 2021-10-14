@@ -50,6 +50,7 @@ class MyApp extends StatelessWidget {
           SignUpScreenPoster.routeName: (ctx) => SignUpScreenPoster(),
           SignUpScreenSearcher.routeName: (ctx) => SignUpScreenSearcher(),
           PostFormScreen.routeName: (ctx) => PostFormScreen(),
+          FeedScreen.routeName: (ctx) => FeedScreen(),
 
           //LandingScreen.routeName: (ctx) => LandingScreen(),
         },

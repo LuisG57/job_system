@@ -165,7 +165,7 @@ class _SignUpScreenPosterState extends State<SignUpScreenPoster> {
                                         ), //we need to figure out how to include more than one dropdown item
                                         DropdownMenuItem<String>(
                                           onTap: () {},
-                                          child: Text('otros'),
+                                          child: Text('Diseño'),
                                           value: '2',
                                         )
                                       ],
