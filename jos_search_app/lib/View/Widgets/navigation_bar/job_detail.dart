@@ -11,6 +11,12 @@ class JobDetail extends StatelessWidget {
     return Scaffold(
       body: Stack(alignment: Alignment.center, children: [
         GradientBackGround(),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            GradientTopBar(),
+          ],
+        ),
         Padding(
           padding: EdgeInsets.all(50),
           child: Column(

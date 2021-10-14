@@ -90,10 +90,17 @@ class PostFormScreen extends StatelessWidget {
                             width: 300,
                             child: DropdownButtonFormField(
                               items: [
-                                DropdownMenuItem(
-                                  child: Text('Categoria'),
-                                ) //we need to figure out how to include more than one dropdown item
+                                DropdownMenuItem<String>(
+                                  child: Text('Programacion'),
+                                  value: '1',
+                                ), //we need to figure out how to include more than one dropdown item
+                                DropdownMenuItem<String>(
+                                  child: Text('Diseño'),
+                                  value: '2',
+                                )
                               ],
+                              onTap: () {},
+                              onChanged: (value) {},
                               decoration:
                                   InputDecoration(hintText: 'Categoria'),
                             ),
@@ -105,12 +112,19 @@ class PostFormScreen extends StatelessWidget {
                             width: 300,
                             child: DropdownButtonFormField(
                               items: [
-                                DropdownMenuItem(
-                                  child: Text('Tipo de Jornada'),
-                                ) //we need to figure out how to include more than one dropdown item
+                                DropdownMenuItem<String>(
+                                  child: Text('Medio Tiempo'),
+                                  value: '1',
+                                ), //we need to figure out how to include more than one dropdown item
+                                DropdownMenuItem<String>(
+                                  child: Text('Tiempo completo'),
+                                  value: '2',
+                                )
                               ],
                               decoration:
                                   InputDecoration(hintText: 'Tipo de Jornada'),
+                              onTap: () {},
+                              onChanged: (value) {},
                             ),
                           ),
                         ],
