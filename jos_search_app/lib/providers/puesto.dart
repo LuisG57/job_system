@@ -4,16 +4,17 @@ import 'dart:convert';
 import '../models/http_exceptions.dart';
 
 class PuestoItem {
-  final String idPuesto;
-  final String compania;
-  final String posicion;
-  final String ubicacion;
-  final String idCategoria;
-  final String idTipoJornada;
-  final String descripcionPuesto;
-  final String idUsuario;
-  final String estatus;
-  final String fechaCreacion;
+  final String? idPuesto; // no hay
+  final String? compania;
+  final String? posicion;
+  final String? ubicacion;
+  final int? idCategoria;
+  final int? idTipoJornada;
+  final String? descripcion;
+  final int? idUsuario;
+  final String? estatus;
+  final String? correoContacto;
+  final String? fecha;
 
   PuestoItem(
       {required this.idPuesto,
@@ -22,10 +23,11 @@ class PuestoItem {
       required this.ubicacion,
       required this.idCategoria,
       required this.idTipoJornada,
-      required this.descripcionPuesto,
+      required this.descripcion,
       required this.idUsuario,
       required this.estatus,
-      required this.fechaCreacion});
+      required this.fecha,
+      required this.correoContacto});
 }
 
 class Puesto with ChangeNotifier {
@@ -34,22 +36,39 @@ class Puesto with ChangeNotifier {
   // Map<String, PuestoItem> _puestoItems = {};
 
   Future<void> addPuestoItem(PuestoItem puestoitem) async {
-    final url = Uri.parse('');
+    final url = Uri.parse('http://45.35.64.173:9095/api/Puestos');
 
     try {
       final response = await http.post(url,
           body: json.encode({
-            'idPuesto': puestoitem.idPuesto,
-            'compania': puestoitem.compania,
-            'posicion': puestoitem.posicion,
-            'ubicacion': puestoitem.ubicacion,
-            'idCategoria': puestoitem.idCategoria,
-            'idTipoJornada': puestoitem.idTipoJornada,
-            'descripcionPuesto': puestoitem.descripcionPuesto,
-            'idUsuario': puestoitem.idUsuario,
-            'estatus': puestoitem.estatus,
-            'fechaCreacion': puestoitem.fechaCreacion
-          }));
+            // "compañia": puestoitem.compania,
+            // "idTipoJornada": 0,
+            // "logo": "url",
+            // "url": "url",
+            // "posicion": puestoitem.posicion,
+            // "ubicacion": puestoitem.ubicacion,
+            // "idCategoria": 0,
+            // "descripcion": puestoitem.descripcion,
+            // "correoContacto": "correo",
+            // "idUsuario": 10,
+            // "fecha": puestoitem.fecha
+
+            "compañia": puestoitem.compania,
+            "idTipoJornada": puestoitem.idTipoJornada,
+            "logo": "url",
+            "url": "url",
+            "posicion": puestoitem.posicion,
+            "ubicacion": puestoitem.ubicacion,
+            "idCategoria": 1,
+            "descripcion": puestoitem.descripcion,
+            "correoContacto": "correo",
+            "idUsuario": 2,
+            "fecha": DateTime.now().toIso8601String()
+          }),
+          headers: {
+            "Accept": "application/json",
+            "content-type": "application/json"
+          });
 
       final newPuestoItem = PuestoItem(
           idPuesto: puestoitem.idPuesto,
@@ -58,10 +77,11 @@ class Puesto with ChangeNotifier {
           ubicacion: puestoitem.ubicacion,
           idCategoria: puestoitem.idCategoria,
           idTipoJornada: puestoitem.idTipoJornada,
-          descripcionPuesto: puestoitem.descripcionPuesto,
+          descripcion: puestoitem.descripcion,
           idUsuario: puestoitem.idUsuario,
           estatus: puestoitem.estatus,
-          fechaCreacion: puestoitem.fechaCreacion);
+          fecha: puestoitem.fecha,
+          correoContacto: '');
 
       _puestoItems.add(newPuestoItem);
     } catch (error) {
@@ -86,10 +106,10 @@ class Puesto with ChangeNotifier {
             'ubicacion': newPuestoItem.ubicacion,
             'idCategoria': newPuestoItem.idCategoria,
             'idTipoJornada': newPuestoItem.idTipoJornada,
-            'descripcionPuesto': newPuestoItem.descripcionPuesto,
+            'descripcionPuesto': newPuestoItem.descripcion,
             'idUsuario': newPuestoItem.idUsuario,
             'estatus': newPuestoItem.estatus,
-            'fechaCreacion': newPuestoItem.fechaCreacion,
+            'fechaCreacion': newPuestoItem.descripcion,
           }));
 
       _puestoItems[puestoIndex] = newPuestoItem;
@@ -130,10 +150,11 @@ class Puesto with ChangeNotifier {
             ubicacion: puestoData['ubicacion'],
             idCategoria: puestoData['idcategoria'],
             idTipoJornada: puestoData['idtipoJornada'],
-            descripcionPuesto: puestoData['descripcionPuesto'],
+            descripcion: puestoData['descripcionPuesto'],
             idUsuario: puestoData['idUsuario'],
             estatus: puestoData['estatis'],
-            fechaCreacion: puestoData['fechaCreacion']));
+            fecha: puestoData['fechaCreacion'],
+            correoContacto: ''));
       });
 
       _puestoItems = loadedProducts;

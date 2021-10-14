@@ -170,7 +170,7 @@ class _SignUpScreenSearcherState extends State<SignUpScreenSearcher> {
                                       onChanged: (value) {},
                                       decoration: InputDecoration(
                                           hintText: 'Categoria'),
-                                      onChanged: (value) {},
+                                      // onChanged: (value) {},
                                     ),
                                   ),
                                 ],
