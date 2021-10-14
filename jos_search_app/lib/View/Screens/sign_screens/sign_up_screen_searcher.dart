@@ -3,10 +3,45 @@ import 'package:jos_search_app/View/Widgets/form_widgets/sign_up_button.dart';
 import 'package:jos_search_app/View/Widgets/form_widgets/sign_up_text_form_field.dart';
 import 'package:jos_search_app/View/Widgets/gradient_background/gradient_background.dart';
 import 'package:jos_search_app/View/Widgets/gradient_background/gradient_background_white_board.dart';
+import 'package:jos_search_app/providers/usuario.dart';
 
-class SignUpScreenSearcher extends StatelessWidget {
+class SignUpScreenSearcher extends StatefulWidget {
   const SignUpScreenSearcher({Key? key}) : super(key: key);
   static const routeName = '/sign-up-searcher';
+
+  @override
+  State<SignUpScreenSearcher> createState() => _SignUpScreenSearcherState();
+}
+
+class _SignUpScreenSearcherState extends State<SignUpScreenSearcher> {
+  var nuevoUsuario = Usuario(
+      idUsuario: 0,
+      nombre: '',
+      apellido: '',
+      idTipoUsuario: '',
+      clave: '',
+      correo: '',
+      estatus: true,
+      fechaCreacion: DateTime.now(),
+      idCategoria: 0,
+      descripcion: '',
+      logo: '',
+      url: '');
+
+  var _initValues = {
+    'idUsuario': DateTime.now().toString(),
+    'nombre': '',
+    'apellido': '',
+    'idTipoUsuario': '',
+    'clave': '',
+    'correo': '',
+    'estatus': '',
+    'fechaCreacion': '',
+    'idCategoria': '',
+    'descripcion': '',
+    'logo': '',
+    'url': ''
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +103,7 @@ class SignUpScreenSearcher extends StatelessWidget {
                                     child: TextFormField(
                                       decoration:
                                           InputDecoration(hintText: 'Nombre'),
+                                      textInputAction: TextInputAction.done,
                                     ),
                                   ),
                                   SizedBox(
@@ -119,7 +155,7 @@ class SignUpScreenSearcher extends StatelessWidget {
                                   ),
                                   Container(
                                     width: 250,
-                                    child: DropdownButtonFormField(
+                                    child: DropdownButtonFormField<String>(
                                       items: [
                                         DropdownMenuItem(
                                           child: Text('Categoria'),
@@ -127,6 +163,7 @@ class SignUpScreenSearcher extends StatelessWidget {
                                       ],
                                       decoration: InputDecoration(
                                           hintText: 'Categoria'),
+                                      onChanged: (value) {},
                                     ),
                                   ),
                                 ],
