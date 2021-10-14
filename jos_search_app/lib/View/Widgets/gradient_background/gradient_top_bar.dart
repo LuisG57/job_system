@@ -9,17 +9,17 @@ class GradientTopBar extends StatelessWidget {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-            Color.fromRGBO(175, 238, 238, 1),
-            Color.fromRGBO(0, 206, 209, 1)
+            Color.fromRGBO(3, 211, 252, 1),
+            Color.fromRGBO(30, 232, 104, 1)
           ])),
       width: double.infinity,
-      height: 150,
+      height: 140,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 20),
-            child: Image.asset('images/about_us_icon.png'),
+            child: Image.asset('images/Gradient_topbar_logo_white.png'),
           ),
           Row(
             children: [

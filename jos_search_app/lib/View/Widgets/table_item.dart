@@ -21,23 +21,25 @@ class _TableItemState extends State<TableItem> {
   Widget build(BuildContext context) {
     double getWidth() {
       // print(MediaQuery.of(context).size.width * 0.22);
-      if (MediaQuery.of(context).size.width * 0.22 < 175) {
-        return MediaQuery.of(context).size.width * 0.16;
-      } else if (MediaQuery.of(context).size.width * 0.22 < 250) {
-        return MediaQuery.of(context).size.width * 0.22;
-      } else if (MediaQuery.of(context).size.width * 0.22 < 275) {
-        return MediaQuery.of(context).size.width * 0.235;
-      } else if (MediaQuery.of(context).size.width * 0.22 < 300) {
-        return MediaQuery.of(context).size.width * 0.25;
-      } else if (MediaQuery.of(context).size.width * 0.22 < 330) {
-        return MediaQuery.of(context).size.width * 0.255;
-      } else if (MediaQuery.of(context).size.width * 0.22 < 375) {
-        return MediaQuery.of(context).size.width * 0.26;
-      } else if (MediaQuery.of(context).size.width * 0.22 < 500) {
-        return MediaQuery.of(context).size.width * 0.265;
-      } else {
-        return MediaQuery.of(context).size.width * 0.28;
-      }
+      return 330;
+
+      // if (MediaQuery.of(context).size.width * 0.22 < 175) {
+      //   return MediaQuery.of(context).size.width * 0.16;
+      // } else if (MediaQuery.of(context).size.width * 0.22 < 250) {
+      //   return MediaQuery.of(context).size.width * 0.22;
+      // } else if (MediaQuery.of(context).size.width * 0.22 < 275) {
+      //   return MediaQuery.of(context).size.width * 0.235;
+      // } else if (MediaQuery.of(context).size.width * 0.22 < 300) {
+      //   return MediaQuery.of(context).size.width * 0.25;
+      // } else if (MediaQuery.of(context).size.width * 0.22 < 330) {
+      //   return MediaQuery.of(context).size.width * 0.255;
+      // } else if (MediaQuery.of(context).size.width * 0.22 < 375) {
+      //   return MediaQuery.of(context).size.width * 0.26;
+      // } else if (MediaQuery.of(context).size.width * 0.22 < 500) {
+      //   return MediaQuery.of(context).size.width * 0.265;
+      // } else {
+      //   return MediaQuery.of(context).size.width * 0.28;
+      // }
     }
 
     //Obtain the data to be displayed from the Derived DataTableSource
@@ -55,10 +57,10 @@ class _TableItemState extends State<TableItem> {
         child: pdt.PaginatedDataTable(
           //header: Text('Data Table Header'),
           columns: const [
-            DataColumn(label: Text('col#1')),
-            DataColumn(label: Text('col#2')),
-            DataColumn(label: Text('col#3')),
-            DataColumn(label: Text('col#4')),
+            DataColumn(label: Text('Ubicación')),
+            DataColumn(label: Text('Posición')),
+            DataColumn(label: Text('Compañía')),
+            DataColumn(label: Text('Tipo Jornada')),
           ],
           source: dts,
           // comparing the actual data length with the PaginatedDataTable.defaultRowsPerPage and then assigning it to _rowPerPage1 variable which then set using the setsState()

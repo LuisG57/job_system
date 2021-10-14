@@ -12,6 +12,7 @@ import '../Screens/lading_screen.dart';
 
 class FeedScreen extends StatelessWidget {
   const FeedScreen({Key? key}) : super(key: key);
+  static const routeName = '/feed';
 
   @override
   Widget build(BuildContext context) {
@@ -19,56 +20,63 @@ class FeedScreen extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     return Stack(alignment: Alignment.center, children: [
       GradientBackGround(),
-      Container(
-        padding: EdgeInsets.only(left: 50, right: 50, bottom: 50),
-        child: Scaffold(
-          // backgroundColor: Colors.transparent,
-          body: ListView(children: [
-            Column(
-              children: [
-                GradientTopBar(),
-                SafeArea(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: width * 0.04,
-                      vertical: height * 0.02,
-                    ),
-                    child: Column(
-                      children: [
-                        Row(
+      Padding(
+        padding: EdgeInsets.only(left: 50, right: 50, bottom: 30),
+        child: ClipRRect(
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(15),
+              bottomRight: Radius.circular(15)),
+          child: Container(
+            child: Scaffold(
+              // backgroundColor: Colors.transparent,
+              body: ListView(children: [
+                Column(
+                  children: [
+                    GradientTopBar(),
+                    SafeArea(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 10,
+                        ),
+                        child: Column(
                           children: [
-                            SearchBar(),
-                            SizedBox(
-                              width: width * 0.01,
+                            Row(
+                              children: [
+                                SearchBar(),
+                                SizedBox(
+                                  width: width * 0.01,
+                                ),
+                                // PrimaryButton(
+                                //   text: 'Search',
+                                //   event: () {
+                                //     Navigator.of(context)
+                                //         .pushNamed(LandingScreen.routeName);
+                                //   },
+                                // ),
+                                const Expanded(child: SizedBox()),
+                                PostJobButton(),
+                              ],
                             ),
-                            PrimaryButton(
-                              text: 'Search',
-                              event: () {
-                                Navigator.of(context)
-                                    .pushNamed(LandingScreen.routeName);
-                              },
+                            const CustomDivider(
+                              icon: Icon(Icons.design_services),
+                              text: Text('Design'),
                             ),
-                            const Expanded(child: SizedBox()),
-                            PostJobButton(),
+                            const TableItem(rowsperpage: 1),
+                            const CustomDivider(
+                              icon: Icon(Icons.code),
+                              text: Text('Programming'),
+                            ),
+                            const TableItem(rowsperpage: 4),
                           ],
                         ),
-                        const CustomDivider(
-                          icon: Icon(Icons.design_services),
-                          text: Text('Design'),
-                        ),
-                        const TableItem(rowsperpage: 1),
-                        const CustomDivider(
-                          icon: Icon(Icons.code),
-                          text: Text('Programming'),
-                        ),
-                        const TableItem(rowsperpage: 4),
-                      ],
+                      ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
+              ]),
             ),
-          ]),
+          ),
         ),
       ),
     ]);
