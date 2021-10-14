@@ -251,10 +251,19 @@ class _SignUpScreenPosterState extends State<SignUpScreenPoster> {
                                     width: 250,
                                     child: DropdownButtonFormField<String>(
                                       items: [
-                                        DropdownMenuItem(
-                                          child: Text('Categoria'),
-                                        ) //we need to figure out how to include more than one dropdown item
+                                        DropdownMenuItem<String>(
+                                          onTap: () {},
+                                          value: '1',
+                                          child: Text('programacion'),
+                                        ), //we need to figure out how to include more than one dropdown item
+                                        DropdownMenuItem<String>(
+                                          onTap: () {},
+                                          child: Text('otros'),
+                                          value: '2',
+                                        )
                                       ],
+                                      onChanged: (value) {},
+                                      onTap: () {},
                                       decoration: InputDecoration(
                                           hintText: 'Categoria'),
                                       onChanged: (value) {},

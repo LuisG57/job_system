@@ -157,10 +157,17 @@ class _SignUpScreenSearcherState extends State<SignUpScreenSearcher> {
                                     width: 250,
                                     child: DropdownButtonFormField<String>(
                                       items: [
-                                        DropdownMenuItem(
-                                          child: Text('Categoria'),
-                                        ) //we need to figure out how to include more than one dropdown item
+                                        DropdownMenuItem<String>(
+                                          child: Text('Programacion'),
+                                          value: '1',
+                                        ), //we need to figure out how to include more than one dropdown item
+                                        DropdownMenuItem<String>(
+                                          child: Text('Diseño'),
+                                          value: '2',
+                                        )
                                       ],
+                                      onTap: () {},
+                                      onChanged: (value) {},
                                       decoration: InputDecoration(
                                           hintText: 'Categoria'),
                                       onChanged: (value) {},
@@ -172,7 +179,7 @@ class _SignUpScreenSearcherState extends State<SignUpScreenSearcher> {
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 8.0),
                                 child: Container(
-                                  width: 600,
+                                  width: 625,
                                   child: TextFormField(
                                     decoration: InputDecoration(
                                         hintText: 'Descripcion...',
