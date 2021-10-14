@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import '../Widgets/search_bar.dart';
 import '../Widgets/post_job_button.dart';
 import '../Widgets/primary_button.dart';
-import '../Widgets/navigation_bar/navigation_bar.dart';
+import '../Widgets/navigation_bar/navigation_bar.dart' as nb;
 
 class LandingScreen extends StatelessWidget {
   static const routeName = '/';
@@ -16,6 +16,6 @@ class LandingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-    return Scaffold(body: NavigationBar());
+    return Scaffold(body: nb.NavigationBar());
   }
 }

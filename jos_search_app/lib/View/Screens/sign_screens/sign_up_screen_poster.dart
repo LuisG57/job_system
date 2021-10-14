@@ -16,6 +16,7 @@ class SignUpScreenPoster extends StatefulWidget {
 }
 
 class _SignUpScreenPosterState extends State<SignUpScreenPoster> {
+  final formKey = GlobalKey<FormState>();
   var nuevoUsuario = Usuario(
       idUsuario: 0,
       nombre: '',
@@ -26,12 +27,12 @@ class _SignUpScreenPosterState extends State<SignUpScreenPoster> {
       estatus: true,
       fechaCreacion: DateTime.now(),
       idCategoria: 0,
-      descripcion: '',
-      logoUrl: '',
-      websiteUrl: '');
+      descripcion: '1',
+      logo: '',
+      url: '');
 
   var _initValues = {
-    'idUsuario': DateTime.now().toString(),
+    // 'idUsuario': DateTime.now().toString(),
     'nombre': '',
     'apellido': '',
     'idTipoUsuario': '',
@@ -41,8 +42,8 @@ class _SignUpScreenPosterState extends State<SignUpScreenPoster> {
     'fechaCreacion': '',
     'idCategoria': '',
     'descripcion': '',
-    'logoUrl': '',
-    'websiteUrl': ''
+    'logo': '',
+    'url': ''
   };
 
   @override
@@ -94,6 +95,7 @@ class _SignUpScreenPosterState extends State<SignUpScreenPoster> {
                       ),
                       Expanded(
                         child: Form(
+                          key: formKey,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
@@ -105,6 +107,25 @@ class _SignUpScreenPosterState extends State<SignUpScreenPoster> {
                                     child: TextFormField(
                                       decoration:
                                           InputDecoration(hintText: 'Nombre'),
+                                      textInputAction: TextInputAction.next,
+                                      onSaved: (valor) => nuevoUsuario =
+                                          Usuario(
+                                              idUsuario: 0,
+                                              nombre: valor,
+                                              apellido: nuevoUsuario.apellido,
+                                              idTipoUsuario:
+                                                  nuevoUsuario.idTipoUsuario,
+                                              clave: nuevoUsuario.clave,
+                                              correo: nuevoUsuario.correo,
+                                              estatus: nuevoUsuario.estatus,
+                                              fechaCreacion:
+                                                  nuevoUsuario.fechaCreacion,
+                                              idCategoria:
+                                                  nuevoUsuario.idCategoria,
+                                              descripcion:
+                                                  nuevoUsuario.descripcion,
+                                              logo: nuevoUsuario.logo,
+                                              url: nuevoUsuario.url),
                                     ),
                                   ),
                                   SizedBox(
@@ -115,6 +136,25 @@ class _SignUpScreenPosterState extends State<SignUpScreenPoster> {
                                     child: TextFormField(
                                       decoration:
                                           InputDecoration(hintText: 'Apellido'),
+                                      textInputAction: TextInputAction.next,
+                                      onSaved: (valor) => nuevoUsuario =
+                                          Usuario(
+                                              idUsuario: 0,
+                                              nombre: nuevoUsuario.nombre,
+                                              apellido: valor,
+                                              idTipoUsuario:
+                                                  nuevoUsuario.idTipoUsuario,
+                                              clave: nuevoUsuario.clave,
+                                              correo: nuevoUsuario.correo,
+                                              estatus: nuevoUsuario.estatus,
+                                              fechaCreacion:
+                                                  nuevoUsuario.fechaCreacion,
+                                              idCategoria:
+                                                  nuevoUsuario.idCategoria,
+                                              descripcion:
+                                                  nuevoUsuario.descripcion,
+                                              logo: nuevoUsuario.logo,
+                                              url: nuevoUsuario.url),
                                     ),
                                   ),
                                 ],
@@ -127,6 +167,25 @@ class _SignUpScreenPosterState extends State<SignUpScreenPoster> {
                                     child: TextFormField(
                                       decoration: InputDecoration(
                                           hintText: 'Correo Electronico'),
+                                      textInputAction: TextInputAction.next,
+                                      onSaved: (valor) => nuevoUsuario =
+                                          Usuario(
+                                              idUsuario: 0,
+                                              nombre: nuevoUsuario.nombre,
+                                              apellido: nuevoUsuario.apellido,
+                                              idTipoUsuario:
+                                                  nuevoUsuario.idTipoUsuario,
+                                              clave: nuevoUsuario.clave,
+                                              correo: valor,
+                                              estatus: nuevoUsuario.estatus,
+                                              fechaCreacion:
+                                                  nuevoUsuario.fechaCreacion,
+                                              idCategoria:
+                                                  nuevoUsuario.idCategoria,
+                                              descripcion:
+                                                  nuevoUsuario.descripcion,
+                                              logo: nuevoUsuario.logo,
+                                              url: nuevoUsuario.url),
                                     ),
                                   ),
                                   SizedBox(
@@ -137,6 +196,25 @@ class _SignUpScreenPosterState extends State<SignUpScreenPoster> {
                                     child: TextFormField(
                                       decoration: InputDecoration(
                                           hintText: 'Contraseña'),
+                                      textInputAction: TextInputAction.next,
+                                      onSaved: (valor) => nuevoUsuario =
+                                          Usuario(
+                                              idUsuario: 0,
+                                              nombre: nuevoUsuario.nombre,
+                                              apellido: nuevoUsuario.apellido,
+                                              idTipoUsuario:
+                                                  nuevoUsuario.idTipoUsuario,
+                                              clave: valor,
+                                              correo: nuevoUsuario.correo,
+                                              estatus: nuevoUsuario.estatus,
+                                              fechaCreacion:
+                                                  nuevoUsuario.fechaCreacion,
+                                              idCategoria:
+                                                  nuevoUsuario.idCategoria,
+                                              descripcion:
+                                                  nuevoUsuario.descripcion,
+                                              logo: nuevoUsuario.logo,
+                                              url: nuevoUsuario.url),
                                     ),
                                   ),
                                 ],
@@ -144,19 +222,34 @@ class _SignUpScreenPosterState extends State<SignUpScreenPoster> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Container(
-                                    width: 350,
-                                    child: TextFormField(
-                                      decoration: InputDecoration(
-                                          hintText: 'Numero de Teléfono'),
-                                    ),
-                                  ),
+                                  // Container(
+                                  //   width: 350,
+                                  //   child: TextFormField(
+                                  //     decoration: InputDecoration(
+                                  //         hintText: 'Numero de Teléfono'),
+                                  //                               textInputAction: TextInputAction.next,
+                                  //     onSaved: (valor) => nuevoUsuario =
+                                  //         Usuario(
+                                  //             idUsuario: null,
+                                  //             nombre: nuevoUsuario.nombre,
+                                  //             apellido: nuevoUsuario.apellido,
+                                  //             idTipoUsuario: nuevoUsuario.idTipoUsuario,
+                                  //             clave: nuevoUsuario.clave,
+                                  //             correo: nuevoUsuario.correo,
+                                  //             estatus: nuevoUsuario.estatus,
+                                  //             fechaCreacion: nuevoUsuario.fechaCreacion,
+                                  //             idCategoria: nuevoUsuario.idCategoria,
+                                  //             descripcion: nuevoUsuario.descripcion,
+                                  //             logo: nuevoUsuario.logo,
+                                  //             url: nuevoUsuario.url),
+                                  //   ),
+                                  // ),
                                   SizedBox(
                                     width: 25,
                                   ),
                                   Container(
                                     width: 250,
-                                    child: DropdownButtonFormField(
+                                    child: DropdownButtonFormField<String>(
                                       items: [
                                         DropdownMenuItem<String>(
                                           onTap: () {},
@@ -173,6 +266,7 @@ class _SignUpScreenPosterState extends State<SignUpScreenPoster> {
                                       onTap: () {},
                                       decoration: InputDecoration(
                                           hintText: 'Categoria'),
+                                      onChanged: (value) {},
                                     ),
                                   ),
                                 ],
@@ -185,6 +279,25 @@ class _SignUpScreenPosterState extends State<SignUpScreenPoster> {
                                     child: TextFormField(
                                       decoration:
                                           InputDecoration(hintText: 'Web site'),
+                                      textInputAction: TextInputAction.next,
+                                      onSaved: (valor) => nuevoUsuario =
+                                          Usuario(
+                                              idUsuario: null,
+                                              nombre: nuevoUsuario.nombre,
+                                              apellido: nuevoUsuario.apellido,
+                                              idTipoUsuario:
+                                                  nuevoUsuario.idTipoUsuario,
+                                              clave: nuevoUsuario.clave,
+                                              correo: nuevoUsuario.correo,
+                                              estatus: nuevoUsuario.estatus,
+                                              fechaCreacion:
+                                                  nuevoUsuario.fechaCreacion,
+                                              idCategoria:
+                                                  nuevoUsuario.idCategoria,
+                                              descripcion:
+                                                  nuevoUsuario.descripcion,
+                                              logo: nuevoUsuario.logo,
+                                              url: valor),
                                     ),
                                   ),
                                   SizedBox(
@@ -195,6 +308,25 @@ class _SignUpScreenPosterState extends State<SignUpScreenPoster> {
                                     child: TextFormField(
                                       decoration:
                                           InputDecoration(hintText: 'Logo Url'),
+                                      textInputAction: TextInputAction.next,
+                                      onSaved: (valor) => nuevoUsuario =
+                                          Usuario(
+                                              idUsuario: null,
+                                              nombre: nuevoUsuario.nombre,
+                                              apellido: nuevoUsuario.apellido,
+                                              idTipoUsuario:
+                                                  nuevoUsuario.idTipoUsuario,
+                                              clave: nuevoUsuario.clave,
+                                              correo: nuevoUsuario.correo,
+                                              estatus: nuevoUsuario.estatus,
+                                              fechaCreacion:
+                                                  nuevoUsuario.fechaCreacion,
+                                              idCategoria:
+                                                  nuevoUsuario.idCategoria,
+                                              descripcion:
+                                                  nuevoUsuario.descripcion,
+                                              logo: valor,
+                                              url: nuevoUsuario.url),
                                     ),
                                   ),
                                 ],
@@ -206,9 +338,12 @@ class _SignUpScreenPosterState extends State<SignUpScreenPoster> {
                       SignUpButton(
                           buttonText: 'Crear Cuenta',
                           function: () {
-                            final nuevousuario =
-                                Provider.of<UsuarioProvedor>(context);
+                            formKey.currentState?.save();
+                            final nuevousuario = Provider.of<UsuarioProvedor>(
+                                context,
+                                listen: false);
                             nuevousuario.createAccount(nuevoUsuario);
+                            // print(nuevoUsuario.toString());
                           }),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -223,7 +358,11 @@ class _SignUpScreenPosterState extends State<SignUpScreenPoster> {
                               width: 10,
                             ),
                             TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Provider.of<UsuarioProvedor>(context,
+                                          listen: false)
+                                      .createAccount(nuevoUsuario);
+                                },
                                 child: Text(
                                   'Iniciar Sesion',
                                   style: TextStyle(fontSize: 18),
