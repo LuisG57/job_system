@@ -224,26 +224,20 @@ class Puesto with ChangeNotifier {
         });
       }
 
-      mapa.forEach((key, value) {
-        print('\n\n\n\n\n\n');
-        print(key);
-        print(value);
-      });
-
-      extractedData.forEach((idPuesto, puestoData) {
+      mapa.forEach((idPuesto, puestoData) {
         print(idPuesto);
         loadedProducts.add(PuestoItem(
-            idPuesto: 0,
-            compania: '',
-            posicion: '',
-            ubicacion: '',
-            idCategoria: 0,
+            idPuesto: int.parse(mapa[idPuesto]['idPuesto']),
+            compania: mapa[idPuesto]['compañia'],
+            posicion: mapa[idPuesto]['tipoJornada'],
+            ubicacion: mapa[idPuesto]['logo'],
+            idCategoria: int.parse(mapa[idPuesto]['url']),
             idTipoJornada: 0,
-            descripcion: '',
+            descripcion: mapa[idPuesto][''],
             idUsuario: 0,
             estatus: '1',
-            fecha: '',
-            correoContacto: ''));
+            fecha: mapa[idPuesto][''],
+            correoContacto: mapa[idPuesto]['']));
       });
 
       _puestoItems = loadedProducts;
