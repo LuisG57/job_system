@@ -266,7 +266,6 @@ class _SignUpScreenPosterState extends State<SignUpScreenPoster> {
                                       onTap: () {},
                                       decoration: InputDecoration(
                                           hintText: 'Categoria'),
-                                      onChanged: (value) {},
                                     ),
                                   ),
                                 ],
