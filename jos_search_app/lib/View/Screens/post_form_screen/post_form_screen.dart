@@ -1,10 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:jos_search_app/View/Widgets/gradient_background/gradient_background.dart';
+import 'package:jos_search_app/providers/puesto.dart';
+import 'package:jos_search_app/providers/usuario.dart';
+import 'package:provider/provider.dart';
 
-class PostFormScreen extends StatelessWidget {
+class PostFormScreen extends StatefulWidget {
   const PostFormScreen({Key? key}) : super(key: key);
   static const routeName = '/post-form-screen';
 
+  @override
+  State<PostFormScreen> createState() => _PostFormScreenState();
+}
+
+class _PostFormScreenState extends State<PostFormScreen> {
+  final formKey = GlobalKey<FormState>();
+
+  var nuevoPuesto = PuestoItem(
+      idPuesto: 0,
+      compania: '',
+      posicion: '',
+      ubicacion: '',
+      idCategoria: 0,
+      idTipoJornada: 0,
+      descripcion: '',
+      idUsuario: 0,
+      estatus: '',
+      correoContacto: '',
+      fecha: DateTime.now().toIso8601String());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,6 +70,7 @@ class PostFormScreen extends StatelessWidget {
                 width: 950,
                 color: Colors.white,
                 child: Form(
+                  key: formKey,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -70,6 +93,19 @@ class PostFormScreen extends StatelessWidget {
                             width: 300,
                             child: TextFormField(
                               decoration: InputDecoration(hintText: 'Compañia'),
+                              textInputAction: TextInputAction.next,
+                              onSaved: (valor) => nuevoPuesto = PuestoItem(
+                                  idPuesto: 0,
+                                  compania: valor,
+                                  posicion: nuevoPuesto.posicion,
+                                  ubicacion: nuevoPuesto.ubicacion,
+                                  idCategoria: nuevoPuesto.idCategoria,
+                                  idTipoJornada: nuevoPuesto.idTipoJornada,
+                                  descripcion: nuevoPuesto.descripcion,
+                                  idUsuario: nuevoPuesto.idUsuario,
+                                  estatus: nuevoPuesto.estatus,
+                                  fecha: nuevoPuesto.fecha,
+                                  correoContacto: nuevoPuesto.correoContacto),
                             ),
                           ),
                           SizedBox(
@@ -79,6 +115,19 @@ class PostFormScreen extends StatelessWidget {
                             width: 300,
                             child: TextFormField(
                               decoration: InputDecoration(hintText: 'Posición'),
+                              textInputAction: TextInputAction.next,
+                              onSaved: (valor) => nuevoPuesto = PuestoItem(
+                                  idPuesto: 0,
+                                  compania: nuevoPuesto.compania,
+                                  posicion: valor,
+                                  ubicacion: nuevoPuesto.ubicacion,
+                                  idCategoria: nuevoPuesto.idCategoria,
+                                  idTipoJornada: nuevoPuesto.idTipoJornada,
+                                  descripcion: nuevoPuesto.descripcion,
+                                  idUsuario: nuevoPuesto.idUsuario,
+                                  estatus: nuevoPuesto.estatus,
+                                  fecha: nuevoPuesto.fecha,
+                                  correoContacto: nuevoPuesto.correoContacto),
                             ),
                           ),
                         ],
@@ -113,18 +162,73 @@ class PostFormScreen extends StatelessWidget {
                             child: DropdownButtonFormField(
                               items: [
                                 DropdownMenuItem<String>(
-                                  child: Text('Medio Tiempo'),
+                                  child: Text('Full time'),
                                   value: '1',
                                 ), //we need to figure out how to include more than one dropdown item
                                 DropdownMenuItem<String>(
-                                  child: Text('Tiempo completo'),
+                                  child: Text('Part time'),
                                   value: '2',
+                                ),
+                                DropdownMenuItem<String>(
+                                  child: Text('Freelance'),
+                                  value: '3',
                                 )
                               ],
                               decoration:
                                   InputDecoration(hintText: 'Tipo de Jornada'),
+                              onSaved: (value) {
+                                int valor = 2;
+                                if (value == '1') {
+                                  valor = 1;
+                                }
+                                if (value == '2') {
+                                  valor = 2;
+                                }
+                                if (value == '3') {
+                                  valor = 3;
+                                }
+                                nuevoPuesto = PuestoItem(
+                                    idPuesto: 0,
+                                    compania: nuevoPuesto.compania,
+                                    posicion: nuevoPuesto.posicion,
+                                    ubicacion: nuevoPuesto.ubicacion,
+                                    idCategoria: nuevoPuesto.idCategoria,
+                                    idTipoJornada: valor,
+                                    descripcion: nuevoPuesto.descripcion,
+                                    idUsuario: nuevoPuesto.idUsuario,
+                                    estatus: nuevoPuesto.estatus,
+                                    fecha: nuevoPuesto.fecha,
+                                    correoContacto: nuevoPuesto.correoContacto);
+                              },
                               onTap: () {},
-                              onChanged: (value) {},
+                              onChanged: (value) {
+                                setState(() {
+                                  int valor = 0;
+                                  if (value == 1) {
+                                    valor = 1;
+                                  }
+                                  if (value == 2) {
+                                    valor = 2;
+                                  }
+                                  if (value == 3) {
+                                    valor = 3;
+                                  }
+
+                                  nuevoPuesto = PuestoItem(
+                                      idPuesto: 0,
+                                      compania: nuevoPuesto.compania,
+                                      posicion: nuevoPuesto.posicion,
+                                      ubicacion: nuevoPuesto.ubicacion,
+                                      idCategoria: nuevoPuesto.idCategoria,
+                                      idTipoJornada: valor,
+                                      descripcion: nuevoPuesto.descripcion,
+                                      idUsuario: nuevoPuesto.idUsuario,
+                                      estatus: nuevoPuesto.estatus,
+                                      fecha: nuevoPuesto.fecha,
+                                      correoContacto:
+                                          nuevoPuesto.correoContacto);
+                                });
+                              },
                             ),
                           ),
                         ],
@@ -138,6 +242,19 @@ class PostFormScreen extends StatelessWidget {
                             child: TextFormField(
                               decoration:
                                   InputDecoration(hintText: 'Ubicación'),
+                              textInputAction: TextInputAction.next,
+                              onSaved: (valor) => nuevoPuesto = PuestoItem(
+                                  idPuesto: 0,
+                                  compania: nuevoPuesto.compania,
+                                  posicion: nuevoPuesto.posicion,
+                                  ubicacion: valor,
+                                  idCategoria: nuevoPuesto.idCategoria,
+                                  idTipoJornada: nuevoPuesto.idTipoJornada,
+                                  descripcion: nuevoPuesto.descripcion,
+                                  idUsuario: nuevoPuesto.idUsuario,
+                                  estatus: nuevoPuesto.estatus,
+                                  fecha: nuevoPuesto.fecha,
+                                  correoContacto: nuevoPuesto.correoContacto),
                             ),
                           ),
                         ],
@@ -150,6 +267,19 @@ class PostFormScreen extends StatelessWidget {
                             decoration: InputDecoration(
                                 hintText: 'Descripcion...',
                                 border: OutlineInputBorder()),
+                            textInputAction: TextInputAction.next,
+                            onSaved: (valor) => nuevoPuesto = PuestoItem(
+                                idPuesto: 0,
+                                compania: nuevoPuesto.compania,
+                                posicion: nuevoPuesto.posicion,
+                                ubicacion: nuevoPuesto.ubicacion,
+                                idCategoria: nuevoPuesto.idCategoria,
+                                idTipoJornada: nuevoPuesto.idTipoJornada,
+                                descripcion: valor,
+                                idUsuario: nuevoPuesto.idUsuario,
+                                estatus: nuevoPuesto.estatus,
+                                fecha: nuevoPuesto.fecha,
+                                correoContacto: nuevoPuesto.correoContacto),
                             maxLines: 6,
                           ),
                         ),
@@ -161,7 +291,15 @@ class PostFormScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                formKey.currentState?.save();
+                                final provedor =
+                                    Provider.of<Puesto>(context, listen: false);
+                                provedor.addPuestoItem(nuevoPuesto);
+
+                                Navigator.pushNamed(context, '/');
+                                provedor.fetchAndSetPuestoItems();
+                              },
                               child: Text('Publicar'),
                               style: ButtonStyle(
                                 fixedSize:
