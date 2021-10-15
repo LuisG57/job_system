@@ -16,7 +16,7 @@ class _PostFormScreenState extends State<PostFormScreen> {
   final formKey = GlobalKey<FormState>();
 
   var nuevoPuesto = PuestoItem(
-      idPuesto: '0',
+      idPuesto: 0,
       compania: '',
       posicion: '',
       ubicacion: '',
@@ -95,7 +95,7 @@ class _PostFormScreenState extends State<PostFormScreen> {
                               decoration: InputDecoration(hintText: 'Compañia'),
                               textInputAction: TextInputAction.next,
                               onSaved: (valor) => nuevoPuesto = PuestoItem(
-                                  idPuesto: '0',
+                                  idPuesto: 0,
                                   compania: valor,
                                   posicion: nuevoPuesto.posicion,
                                   ubicacion: nuevoPuesto.ubicacion,
@@ -117,7 +117,7 @@ class _PostFormScreenState extends State<PostFormScreen> {
                               decoration: InputDecoration(hintText: 'Posición'),
                               textInputAction: TextInputAction.next,
                               onSaved: (valor) => nuevoPuesto = PuestoItem(
-                                  idPuesto: '0',
+                                  idPuesto: 0,
                                   compania: nuevoPuesto.compania,
                                   posicion: valor,
                                   ubicacion: nuevoPuesto.ubicacion,
@@ -188,7 +188,7 @@ class _PostFormScreenState extends State<PostFormScreen> {
                                   valor = 3;
                                 }
                                 nuevoPuesto = PuestoItem(
-                                    idPuesto: '0',
+                                    idPuesto: 0,
                                     compania: nuevoPuesto.compania,
                                     posicion: nuevoPuesto.posicion,
                                     ubicacion: nuevoPuesto.ubicacion,
@@ -215,7 +215,7 @@ class _PostFormScreenState extends State<PostFormScreen> {
                                   }
 
                                   nuevoPuesto = PuestoItem(
-                                      idPuesto: '0',
+                                      idPuesto: 0,
                                       compania: nuevoPuesto.compania,
                                       posicion: nuevoPuesto.posicion,
                                       ubicacion: nuevoPuesto.ubicacion,
@@ -244,7 +244,7 @@ class _PostFormScreenState extends State<PostFormScreen> {
                                   InputDecoration(hintText: 'Ubicación'),
                               textInputAction: TextInputAction.next,
                               onSaved: (valor) => nuevoPuesto = PuestoItem(
-                                  idPuesto: '0',
+                                  idPuesto: 0,
                                   compania: nuevoPuesto.compania,
                                   posicion: nuevoPuesto.posicion,
                                   ubicacion: valor,
@@ -269,7 +269,7 @@ class _PostFormScreenState extends State<PostFormScreen> {
                                 border: OutlineInputBorder()),
                             textInputAction: TextInputAction.next,
                             onSaved: (valor) => nuevoPuesto = PuestoItem(
-                                idPuesto: '0',
+                                idPuesto: 0,
                                 compania: nuevoPuesto.compania,
                                 posicion: nuevoPuesto.posicion,
                                 ubicacion: nuevoPuesto.ubicacion,
@@ -298,6 +298,7 @@ class _PostFormScreenState extends State<PostFormScreen> {
                                 provedor.addPuestoItem(nuevoPuesto);
 
                                 Navigator.pushNamed(context, '/');
+                                provedor.fetchAndSetPuestoItems();
                               },
                               child: Text('Publicar'),
                               style: ButtonStyle(
