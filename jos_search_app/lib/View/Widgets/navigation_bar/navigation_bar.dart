@@ -9,7 +9,7 @@ import '../gradient_background/gradient_background.dart';
 import '../centered_view/centered_view.dart';
 
 class NavigationBar extends StatelessWidget {
-  static const routeName = '/navigarion-bar';
+  static const routeName = '/navigation-bar';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
