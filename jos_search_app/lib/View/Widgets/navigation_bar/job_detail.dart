@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:jos_search_app/View/Widgets/gradient_background/gradient_background.dart';
 import 'package:jos_search_app/View/Widgets/gradient_background/gradient_top_bar.dart';
@@ -21,7 +23,9 @@ class JobDetail extends StatelessWidget {
           padding: EdgeInsets.only(bottom: 30, left: 50, right: 50),
           child: Column(
             children: [
-              GradientTopBar(),
+              GradientTopBar(
+                option: true,
+              ),
               Expanded(
                 child: Container(
                   width: double.infinity,
@@ -72,64 +76,187 @@ class JobDetail extends StatelessWidget {
                         color: Colors.black12,
                       ),
                       Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    'Posición: ',
-                                    style: TextStyle(
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8.0),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      'Posición: ',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 22),
+                                    ),
+                                    Text(
+                                      'Programador Back-End',
+                                      style: TextStyle(fontSize: 22),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8.0),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      'Categoría: ',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 22,
+                                          fontStyle: FontStyle.italic),
+                                    ),
+                                    Text(
+                                      'Programación',
+                                      style: TextStyle(
+                                          fontSize: 22,
+                                          fontStyle: FontStyle.italic),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8.0),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      'Tipo de jornada: ',
+                                      style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 22),
-                                  ),
-                                  Text(
-                                    'Programador Back-End',
-                                    style: TextStyle(fontSize: 22),
-                                  ),
-                                ],
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                    Text(
+                                      'Tiempo completo',
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 28.0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: 800,
+                                      child: RichText(
+                                          softWrap: true,
+                                          text: TextSpan(
+                                              style: TextStyle(fontSize: 20),
+                                              children: [
+                                                TextSpan(
+                                                    text:
+                                                        'Descripción del empleo: ',
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    )),
+                                                TextSpan(
+                                                    text:
+                                                        'Este es un empleo como programador de back end, en el que debes de tener conocimientos en c#.')
+                                              ])),
+                                    ),
+                                    /*Text(
+                                      'Descripción del empleo: ',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                    Container(
+                                      width: 800,
+                                      child: Text(
+                                        'Este es un empleo como programador de back end, en el que debes de tener conocimientos en c#.',
+                                        softWrap: true,
+                                        // overflow: TextOverflow.clip,
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                        ),
+                                      ),
+                                    ),*/
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 16.0),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      'Sitio Web: ',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                      ),
+                                    ),
+                                    Text(
+                                      'WWW.CompanyWebsite.com',
+                                      style: TextStyle(
+                                          fontSize: 18, color: Colors.blue),
+                                    ),
+                                  ],
+                                ),
                               ),
                               Row(
                                 children: [
                                   Text(
-                                    'Categoría: ',
+                                    'Correo: ',
                                     style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 22,
-                                        fontStyle: FontStyle.italic),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
                                   ),
                                   Text(
-                                    'Programación',
+                                    'NuevosEmpleos@CompanyWebsite.com',
                                     style: TextStyle(
-                                        fontSize: 22,
-                                        fontStyle: FontStyle.italic),
+                                        fontSize: 18, color: Colors.blue),
                                   ),
                                 ],
-                              ),
-                              Text('Schedule Type: Full Time'),
-                              Text(
-                                  'Job Description: This is a back end developer job, in which we may need you to know c#.'),
-                              Text('Website: WWW.CompanyWebsite.com')
+                              )
                             ],
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                'Oct, 4th 2021',
-                                style: TextStyle(fontSize: 20),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 4.0),
+                                child: Text(
+                                  'Oct, 4th 2021',
+                                  style: TextStyle(fontSize: 20),
+                                ),
                               ),
-                              Text(
-                                'Santo Domingo, DR',
-                                style: TextStyle(fontSize: 20),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 4.0),
+                                child: Text(
+                                  'Santo Domingo, DR',
+                                  style: TextStyle(fontSize: 20),
+                                ),
                               ),
-                              Text('Active offer'),
-                              ElevatedButton(
-                                  onPressed: () {}, child: Text('Aplicar'))
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 40.0),
+                                child: Text(
+                                  'Oferta de Activa!',
+                                  style: TextStyle(
+                                      fontSize: 22,
+                                      fontStyle: FontStyle.italic,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
                             ],
                           )
                         ],

@@ -310,7 +310,9 @@ class _PostFormScreenState extends State<PostFormScreen> {
                               width: 30,
                             ),
                             ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
                               child: Text('Cancelar'),
                               style: ButtonStyle(
                                 fixedSize:

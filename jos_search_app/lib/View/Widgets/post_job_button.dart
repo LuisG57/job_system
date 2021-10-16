@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jos_search_app/View/Screens/post_form_screen/post_form_screen.dart';
 
 class PostJobButton extends StatelessWidget {
   const PostJobButton({Key? key}) : super(key: key);
@@ -7,7 +8,9 @@ class PostJobButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(30),
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, PostFormScreen.routeName);
+      },
       child: Container(
         padding: const EdgeInsets.only(right: 3),
         child: Row(

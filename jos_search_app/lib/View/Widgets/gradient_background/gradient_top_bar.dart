@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:jos_search_app/View/Screens/feed_screen.dart';
+import 'package:jos_search_app/View/Widgets/navigation_bar/navigation_bar.dart';
 
 class GradientTopBar extends StatelessWidget {
+  GradientTopBar({this.option = false});
+  final option;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,7 +28,27 @@ class GradientTopBar extends StatelessWidget {
           ),
           Row(
             children: [
-              CircleAvatar(),
+              option
+                  ? Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: TextButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, FeedScreen.routeName);
+                          },
+                          child: Text(
+                            'Inicio',
+                            style: TextStyle(fontSize: 20, color: Colors.white),
+                          )),
+                    )
+                  : Text(''),
+              CircleAvatar(
+                child: Text(
+                  'FG',
+                  style: TextStyle(color: Colors.white),
+                ),
+                backgroundColor: Colors.lightBlue,
+                radius: 26,
+              ),
               Padding(
                 padding: const EdgeInsets.only(top: 14, left: 20, right: 20),
                 child: Padding(
@@ -33,7 +58,9 @@ class GradientTopBar extends StatelessWidget {
                     children: [
                       Text('Frankelly Guzman'),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, NavigationBar.routeName);
+                        },
                         child: Text('Log out'),
                       ),
                     ],

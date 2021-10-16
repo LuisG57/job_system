@@ -12,11 +12,12 @@ class SignInWidget extends StatelessWidget {
     return GradientBackgroundWhiteBoard(Scaffold(
       body: Center(
         child: Container(
-          width: 500,
-          child: ListView(
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          width: 400,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Image.asset('images/sign_in_icon.png'),
+              Container(
+                  height: 175, child: Image.asset('images/sign_in_icon.png')),
               TextFormField(
                 decoration: const InputDecoration(
                   icon: Icon(Icons.email),
@@ -33,21 +34,45 @@ class SignInWidget extends StatelessWidget {
                 ),
               ),
               Row(
-                //  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextButton(
                       onPressed: () {},
-                      child: Text('Olvidaste tu contraseña?')),
+                      child: Text(
+                        'Olvidaste tu contraseña?',
+                        style: TextStyle(fontSize: 16),
+                      )),
+                  SizedBox(
+                    width: 20,
+                  ),
                   TextButton(
                       onPressed: () {
                         Navigator.pushNamed(context, SignUpScreen.routeName);
                       },
-                      child: Text('Registrarme'))
+                      child: Text(
+                        'Registrarme',
+                        style: TextStyle(fontSize: 16),
+                      ))
                 ],
               ),
-              ElevatedButton(
-                onPressed: () {},
-                child: Text('dasdsa'),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(30),
+                child: Container(
+                  height: 50,
+                  width: 200,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(
+                            Colors.greenAccent.shade400)),
+                    child: Text(
+                      'Iniciar Sesión',
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
               )
             ],
           ),

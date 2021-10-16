@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jos_search_app/View/Screens/sign_in_screen.dart';
 import 'package:jos_search_app/View/Widgets/form_widgets/sign_up_button.dart';
 import 'package:jos_search_app/View/Widgets/form_widgets/sign_up_text_form_field.dart';
 import 'package:jos_search_app/View/Widgets/gradient_background/gradient_background.dart';
@@ -206,7 +207,10 @@ class _SignUpScreenSearcherState extends State<SignUpScreenSearcher> {
                               width: 10,
                             ),
                             TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                      context, SignInScreen.routeName);
+                                },
                                 child: Text(
                                   'Iniciar Sesion',
                                   style: TextStyle(fontSize: 18),

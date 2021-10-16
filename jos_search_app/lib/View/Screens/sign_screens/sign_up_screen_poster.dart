@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jos_search_app/View/Screens/sign_in_screen.dart';
 import 'package:jos_search_app/View/Widgets/form_widgets/sign_up_button.dart';
 import 'package:jos_search_app/View/Widgets/form_widgets/sign_up_text_form_field.dart';
 import 'package:jos_search_app/View/Widgets/gradient_background/gradient_background.dart';
@@ -359,9 +360,11 @@ class _SignUpScreenPosterState extends State<SignUpScreenPoster> {
                             ),
                             TextButton(
                                 onPressed: () {
-                                  Provider.of<UsuarioProvedor>(context,
-                                          listen: false)
-                                      .createAccount(nuevoUsuario);
+                                  Navigator.pushNamed(
+                                      context, SignInScreen.routeName);
+                                  // Provider.of<UsuarioProvedor>(context,
+                                  //         listen: false)
+                                  //     .createAccount(nuevoUsuario);
                                 },
                                 child: Text(
                                   'Iniciar Sesion',
