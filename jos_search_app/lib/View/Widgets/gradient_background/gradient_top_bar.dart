@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jos_search_app/View/Screens/feed_screen.dart';
-import 'package:jos_search_app/View/Widgets/navigation_bar/navigation_bar.dart';
+import 'package:jos_search_app/View/Widgets/navigation_bar/navigation_bar.dart'
+    as nb;
 
 class GradientTopBar extends StatelessWidget {
   GradientTopBar({this.option = false});
@@ -59,7 +60,8 @@ class GradientTopBar extends StatelessWidget {
                       Text('Frankelly Guzman'),
                       TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, NavigationBar.routeName);
+                          Navigator.pushNamed(
+                              context, nb.NavigationBar.routeName);
                         },
                         child: Text('Log out'),
                       ),

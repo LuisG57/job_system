@@ -3,7 +3,8 @@ import 'package:jos_search_app/View/Screens/lading_screen.dart';
 import 'package:jos_search_app/View/Screens/post_form_screen/post_form_screen.dart';
 import 'package:jos_search_app/View/Screens/sign_screens/sign_up_screen_searcher.dart';
 import 'package:jos_search_app/View/Screens/sign_screens/sign_up_screen_poster.dart';
-import 'package:jos_search_app/View/Widgets/navigation_bar/navigation_bar.dart';
+import 'package:jos_search_app/View/Widgets/navigation_bar/navigation_bar.dart'
+    as nb;
 import 'package:jos_search_app/providers/puesto.dart';
 import 'package:jos_search_app/providers/usuario.dart';
 import 'package:jos_search_app/providers/usuario_provedor.dart';
@@ -46,7 +47,7 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: '/',
         routes: {
-          '/': (ctx) => NavigationBar(),
+          '/': (ctx) => nb.NavigationBar(),
           // '/': (ctx) => LandingScreen(), I commented this to test job detail go back to this when done ma g
           SignInScreen.routeName: (ctx) => SignInScreen(),
           SignUpScreen.routeName: (ctx) => SignUpScreen(),
@@ -56,7 +57,7 @@ class MyApp extends StatelessWidget {
           PostFormScreen.routeName: (ctx) => PostFormScreen(),
           FeedScreen.routeName: (ctx) => FeedScreen(),
           JobDetailScreen.routeName: (ctx) => JobDetailScreen(),
-          NavigationBar.routeName: (ctx) => NavigationBar(),
+          nb.NavigationBar.routeName: (ctx) => nb.NavigationBar(),
 
           //LandingScreen.routeName: (ctx) => LandingScreen(),
         },
