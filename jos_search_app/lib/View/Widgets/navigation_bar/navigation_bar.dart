@@ -4,6 +4,8 @@ import 'package:jos_search_app/View/Screens/sign_in_screen.dart';
 import 'package:jos_search_app/View/Screens/sign_up_screen.dart';
 import 'package:jos_search_app/View/Widgets/call_to_action/call_to_action.dart';
 import 'package:jos_search_app/View/Widgets/gradient_background/gradient_background_white_board.dart';
+import 'package:jos_search_app/providers/puesto.dart';
+import 'package:provider/provider.dart';
 import '../page_details/page_details.dart';
 import '../gradient_background/gradient_background.dart';
 import '../centered_view/centered_view.dart';
@@ -12,6 +14,9 @@ class NavigationBar extends StatelessWidget {
   static const routeName = '/navigation-bar';
   @override
   Widget build(BuildContext context) {
+    final provedor = Provider.of<Puesto>(context, listen: true);
+    provedor.fetchAndSetPuestoItems();
+
     return Scaffold(
       body: GradientBackgroundWhiteBoard(Column(
         children: [

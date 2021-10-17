@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jos_search_app/View/Screens/feed_screen.dart';
 import 'package:jos_search_app/View/Widgets/gradient_background/gradient_background.dart';
 import 'package:jos_search_app/providers/puesto.dart';
 import 'package:jos_search_app/providers/usuario.dart';
@@ -297,7 +298,8 @@ class _PostFormScreenState extends State<PostFormScreen> {
                                     Provider.of<Puesto>(context, listen: false);
                                 provedor.addPuestoItem(nuevoPuesto);
 
-                                Navigator.pushNamed(context, '/');
+                                Navigator.pushNamed(
+                                    context, FeedScreen.routeName);
                                 provedor.fetchAndSetPuestoItems();
                               },
                               child: Text('Publicar'),

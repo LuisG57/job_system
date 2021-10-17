@@ -75,25 +75,33 @@ class PuestoItem {
   final String? posicion;
   final String? ubicacion;
   final int? idCategoria;
+  final String? categoria;
   final int? idTipoJornada;
+  final String? tipoJornada;
   final String? descripcion;
   final int? idUsuario;
   final String? estatus;
   final String? correoContacto;
   final String? fecha;
+  final String? logo;
+  final String? url;
 
   PuestoItem(
       {required this.idPuesto,
       required this.compania,
       required this.posicion,
       required this.ubicacion,
-      required this.idCategoria,
-      required this.idTipoJornada,
+      this.idCategoria,
+      this.categoria,
+      this.idTipoJornada,
+      this.tipoJornada,
       required this.descripcion,
       required this.idUsuario,
       required this.estatus,
       required this.fecha,
-      required this.correoContacto});
+      required this.correoContacto,
+      this.logo = '',
+      this.url = ''});
 }
 
 class Puesto with ChangeNotifier {
@@ -204,7 +212,7 @@ class Puesto with ChangeNotifier {
 
   Future<void> fetchAndSetPuestoItems() async {
     final url =
-        Uri.parse('http://45.35.64.173:9095/api/Puestos?page=1&rows=20');
+        Uri.parse('http://45.35.64.173:9095/api/Puestos?page=1&rows=100');
     try {
       final response = await http.get(url);
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
@@ -225,31 +233,41 @@ class Puesto with ChangeNotifier {
       }
 
       mapa.forEach((idPuesto, puestoData) {
+        print('you in the for each');
         print(idPuesto);
         loadedProducts.add(PuestoItem(
-            idPuesto: int.parse(mapa[idPuesto]['idPuesto']),
+            idPuesto: mapa[idPuesto]['idPuesto'],
             compania: mapa[idPuesto]['compañia'],
-            posicion: mapa[idPuesto]['tipoJornada'],
-            ubicacion: mapa[idPuesto]['logo'],
-            idCategoria: int.parse(mapa[idPuesto]['url']),
-            idTipoJornada: 0,
-            descripcion: mapa[idPuesto][''],
-            idUsuario: 0,
+            posicion: mapa[idPuesto]['posicion'],
+            ubicacion: mapa[idPuesto]['ubicacion'],
+            categoria: mapa[idPuesto]['categoria'],
+            tipoJornada: mapa[idPuesto]['tipoJornada'],
+            descripcion: mapa[idPuesto]['descripcion'],
+            idUsuario: int.parse(mapa[idPuesto]['usuario']),
             estatus: '1',
-            fecha: mapa[idPuesto][''],
-            correoContacto: mapa[idPuesto]['']));
+            fecha: mapa[idPuesto]['fecha'],
+            correoContacto: mapa[idPuesto]['correoContacto'],
+            logo: mapa[idPuesto]['logo'],
+            url: mapa[idPuesto]['url']));
       });
 
       _puestoItems = loadedProducts;
+      allPosts = loadedProducts;
       print(_puestoItems.first.posicion);
       print(extractedData);
-      notifyListeners();
+      // notifyListeners();
 
       // print(json.decode(response.body));
     } catch (error) {
       print("Tienes un error en fetch and set este es el detalle: $error");
       throw error;
     }
+  }
+
+  List<PuestoItem> allPosts = [];
+  List<PuestoItem> getAllPosts() {
+    List<PuestoItem> clon = new List<PuestoItem>.from(allPosts);
+    return clon;
   }
 }
 

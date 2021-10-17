@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:jos_search_app/View/Widgets/gradient_background/gradient_background.dart';
 import 'package:jos_search_app/View/Widgets/gradient_background/gradient_top_bar.dart';
+import 'package:jos_search_app/providers/puesto.dart';
+import 'package:provider/provider.dart';
 import '../gradient_background/gradient_background_white_board.dart';
 
 class JobDetail extends StatelessWidget {
@@ -10,6 +12,14 @@ class JobDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final id = ModalRoute.of(context)!.settings.arguments as int;
+    final provedor = Provider.of<Puesto>(context, listen: true);
+    var lista = provedor.getAllPosts();
+    // print('directly ${provedor.getAllPosts().length}');
+    // print('passed $lista');
+    // print('id = $id');
+    final post = lista.firstWhere((element) => element.idPuesto == id);
+    print(post.fecha);
     return Scaffold(
       body: Stack(alignment: Alignment.center, children: [
         GradientBackGround(),
@@ -52,19 +62,21 @@ class JobDetail extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Center(
-                                child: Text(
-                              'LOGO ',
-                              style: TextStyle(
-                                  fontSize: 28,
-                                  fontFamily: 'OpenSans',
-                                  fontWeight: FontWeight.w900,
-                                  color: Colors.black54),
-                            )),
+                              child: Image.network('${post.logo}'),
+                              //     Text(
+                              //   'LOGO ',
+                              //   style: TextStyle(
+                              //       fontSize: 28,
+                              //       fontFamily: 'OpenSans',
+                              //       fontWeight: FontWeight.w900,
+                              //       color: Colors.black54),
+                              // ),
+                            ),
                           )),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 16.0),
                         child: Text(
-                          'Nombre de la empresa',
+                          '${post.compania}',
                           style: TextStyle(
                               fontSize: 28,
                               fontFamily: 'OpenSans',
@@ -95,7 +107,7 @@ class JobDetail extends StatelessWidget {
                                           fontSize: 22),
                                     ),
                                     Text(
-                                      'Programador Back-End',
+                                      '${post.posicion}',
                                       style: TextStyle(fontSize: 22),
                                     ),
                                   ],
@@ -109,15 +121,15 @@ class JobDetail extends StatelessWidget {
                                     Text(
                                       'Categoría: ',
                                       style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 22,
-                                          fontStyle: FontStyle.italic),
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 22,
+                                      ),
                                     ),
                                     Text(
-                                      'Programación',
+                                      '${post.categoria}',
                                       style: TextStyle(
-                                          fontSize: 22,
-                                          fontStyle: FontStyle.italic),
+                                        fontSize: 22,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -135,7 +147,7 @@ class JobDetail extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      'Tiempo completo',
+                                      '${post.tipoJornada}',
                                       style: TextStyle(
                                         fontSize: 18,
                                       ),
@@ -154,7 +166,9 @@ class JobDetail extends StatelessWidget {
                                       child: RichText(
                                           softWrap: true,
                                           text: TextSpan(
-                                              style: TextStyle(fontSize: 20),
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  color: Colors.black),
                                               children: [
                                                 TextSpan(
                                                     text:
@@ -164,8 +178,7 @@ class JobDetail extends StatelessWidget {
                                                           FontWeight.bold,
                                                     )),
                                                 TextSpan(
-                                                    text:
-                                                        'Este es un empleo como programador de back end, en el que debes de tener conocimientos en c#.')
+                                                    text: '${post.descripcion}')
                                               ])),
                                     ),
                                     /*Text(
@@ -201,7 +214,7 @@ class JobDetail extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      'WWW.CompanyWebsite.com',
+                                      '${post.url}',
                                       style: TextStyle(
                                           fontSize: 18, color: Colors.blue),
                                     ),
@@ -218,7 +231,7 @@ class JobDetail extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    'NuevosEmpleos@CompanyWebsite.com',
+                                    '${post.correoContacto}',
                                     style: TextStyle(
                                         fontSize: 18, color: Colors.blue),
                                   ),
@@ -234,7 +247,7 @@ class JobDetail extends StatelessWidget {
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 4.0),
                                 child: Text(
-                                  'Oct, 4th 2021',
+                                  '${post.fecha!.substring(0, 10)}',
                                   style: TextStyle(fontSize: 20),
                                 ),
                               ),
@@ -242,7 +255,7 @@ class JobDetail extends StatelessWidget {
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 4.0),
                                 child: Text(
-                                  'Santo Domingo, DR',
+                                  '${post.ubicacion}',
                                   style: TextStyle(fontSize: 20),
                                 ),
                               ),
@@ -253,7 +266,6 @@ class JobDetail extends StatelessWidget {
                                   'Oferta de Activa!',
                                   style: TextStyle(
                                       fontSize: 22,
-                                      fontStyle: FontStyle.italic,
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),

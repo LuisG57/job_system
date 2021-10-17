@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:jos_search_app/View/Screens/job_detail_screen.dart';
+import 'package:jos_search_app/providers/puesto.dart';
+import 'package:provider/provider.dart';
 
 import 'custom_paginated_data_table.dart' as pdt;
 
 class TableItem extends StatefulWidget {
-  const TableItem({required this.rowsperpage, Key? key}) : super(key: key);
+  const TableItem({required this.rowsperpage, required this.category, Key? key})
+      : super(key: key);
   final int rowsperpage;
+  final String category;
   @override
   _TableItemState createState() => _TableItemState();
 }
@@ -43,7 +48,10 @@ class _TableItemState extends State<TableItem> {
     }
 
     //Obtain the data to be displayed from the Derived DataTableSource
-    var dts = DTS();
+    final provedor = Provider.of<Puesto>(context, listen: true);
+
+    var dts =
+        DTS(category: widget.category, provedor: provedor, context: context);
     // dts.rowcount provides the actual data length, ForInstance, If we have 7 data stored in the DataTableSource Object, then we will get 12 as dts.rowCount
     var tableItemsCount = dts.rowCount;
     // PaginatedDataTable.defaultRowsPerPage provides value as 10
@@ -82,21 +90,51 @@ class _TableItemState extends State<TableItem> {
 }
 
 class DTS extends DataTableSource {
+  final String category;
+  final Puesto provedor;
+  final BuildContext context;
+  DTS({required this.category, required this.provedor, required this.context}) {
+    lista = provedor.getAllPosts();
+    lista.removeWhere((element) {
+      print(element.categoria);
+      print(element.categoria.toString().trim().toUpperCase() !=
+          category.toString().trim().toUpperCase());
+      print(category);
+      print(element.categoria);
+      return element.categoria.toString().trim().toUpperCase() !=
+          category.toString().trim().toUpperCase();
+    });
+    print('print = ${lista.length}');
+  }
+  late List<PuestoItem> lista;
   @override
   DataRow? getRow(int index) {
-    return DataRow.byIndex(index: index, cells: [
-      DataCell(Text('#cel1-$index')),
-      DataCell(Text('#cel2-$index')),
-      DataCell(Text('#cel3-$index')),
-      DataCell(Text('#cel4-$index')),
-    ]);
+    print(lista.first.compania);
+    return DataRow.byIndex(
+        index: index,
+        cells: [
+          DataCell(Text('${lista[index].ubicacion}')),
+          DataCell(Text('${lista[index].posicion}')),
+          DataCell(Text('${lista[index].compania}')),
+          DataCell(Text('${lista[index].tipoJornada}')),
+        ],
+        onSelectChanged: (selected) {
+          print(index);
+          Navigator.pushNamed(context, JobDetailScreen.routeName,
+              arguments: lista[index].idPuesto);
+        });
+  }
+
+  Future<int> getRC() async {
+    await lista.length;
+    throw lista.length;
   }
 
   @override
   bool get isRowCountApproximate => false;
 
   @override
-  int get rowCount => 100;
+  int get rowCount => lista.length;
 
   @override
   int get selectedRowCount => 0;

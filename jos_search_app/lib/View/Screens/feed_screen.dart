@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:jos_search_app/providers/puesto.dart';
+import 'package:provider/provider.dart';
 // import 'dart:io' show Platform;
 
 import '../Widgets/table_item.dart';
@@ -18,6 +20,7 @@ class FeedScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
+    final provedor = Provider.of<Puesto>(context, listen: false);
     return Stack(alignment: Alignment.center, children: [
       GradientBackGround(),
       Padding(
@@ -60,14 +63,16 @@ class FeedScreen extends StatelessWidget {
                             ),
                             const CustomDivider(
                               icon: Icon(Icons.design_services),
-                              text: Text('Design'),
+                              text: Text('Diseño'),
                             ),
-                            const TableItem(rowsperpage: 1),
+                            const TableItem(
+                                rowsperpage: 1, category: 'Diseñador'),
                             const CustomDivider(
                               icon: Icon(Icons.code),
-                              text: Text('Programming'),
+                              text: Text('Programacion'),
                             ),
-                            const TableItem(rowsperpage: 4),
+                            const TableItem(
+                                rowsperpage: 4, category: 'Programador'),
                           ],
                         ),
                       ),
