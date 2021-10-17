@@ -1,3 +1,7 @@
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:jos_search_app/View/Screens/sign_in_screen.dart';
 import 'package:jos_search_app/View/Widgets/form_widgets/sign_up_button.dart';
@@ -297,39 +301,82 @@ class _SignUpScreenPosterState extends State<SignUpScreenPoster> {
                                                   nuevoUsuario.idCategoria,
                                               descripcion:
                                                   nuevoUsuario.descripcion,
-                                              logo: nuevoUsuario.logo,
-                                              url: valor),
+                                              logo: valor,
+                                              url: nuevoUsuario.url),
                                     ),
                                   ),
                                   SizedBox(
                                     width: 25,
                                   ),
                                   Container(
-                                    width: 300,
-                                    child: TextFormField(
-                                      decoration:
-                                          InputDecoration(hintText: 'Logo Url'),
-                                      textInputAction: TextInputAction.next,
-                                      onSaved: (valor) => nuevoUsuario =
-                                          Usuario(
-                                              idUsuario: null,
-                                              nombre: nuevoUsuario.nombre,
-                                              apellido: nuevoUsuario.apellido,
-                                              idTipoUsuario:
-                                                  nuevoUsuario.idTipoUsuario,
-                                              clave: nuevoUsuario.clave,
-                                              correo: nuevoUsuario.correo,
-                                              estatus: nuevoUsuario.estatus,
-                                              fechaCreacion:
-                                                  nuevoUsuario.fechaCreacion,
-                                              idCategoria:
-                                                  nuevoUsuario.idCategoria,
-                                              descripcion:
-                                                  nuevoUsuario.descripcion,
-                                              logo: valor,
-                                              url: nuevoUsuario.url),
-                                    ),
-                                  ),
+                                      width: 200,
+                                      height: 40,
+                                      child: ElevatedButton(
+                                        onPressed: () async {
+                                          FilePickerResult? result =
+                                              await FilePicker.platform
+                                                  .pickFiles();
+
+                                          if (result != null) {
+                                            // File file =
+                                            //     File(result.files.single.path as String);
+                                            var file =
+                                                result.files.single.bytes;
+                                            var imageByte = file!.toList();
+                                            print(imageByte);
+                                            String base64Image =
+                                                base64Encode(imageByte);
+                                            print(base64Image);
+
+                                            nuevoUsuario = Usuario(
+                                                idUsuario: null,
+                                                nombre: nuevoUsuario.nombre,
+                                                apellido: nuevoUsuario.apellido,
+                                                idTipoUsuario:
+                                                    nuevoUsuario.idTipoUsuario,
+                                                clave: nuevoUsuario.clave,
+                                                correo: nuevoUsuario.correo,
+                                                estatus: nuevoUsuario.estatus,
+                                                fechaCreacion:
+                                                    nuevoUsuario.fechaCreacion,
+                                                idCategoria:
+                                                    nuevoUsuario.idCategoria,
+                                                descripcion:
+                                                    nuevoUsuario.descripcion,
+                                                logo: nuevoUsuario
+                                                    .logo, //--------------------------------------modificar rapido----------------------------------------
+                                                url: base64Image);
+                                          } else {
+                                            // User canceled the picker
+                                          }
+                                        },
+                                        child: Text('Seleccionar Logo...'),
+                                      )
+
+                                      // TextFormField(
+                                      //   decoration:
+                                      //       InputDecoration(hintText: 'Logo Url'),
+                                      //   textInputAction: TextInputAction.next,
+                                      //   onSaved: (valor) => nuevoUsuario =
+                                      //       Usuario(
+                                      //           idUsuario: null,
+                                      //           nombre: nuevoUsuario.nombre,
+                                      //           apellido: nuevoUsuario.apellido,
+                                      //           idTipoUsuario:
+                                      //               nuevoUsuario.idTipoUsuario,
+                                      //           clave: nuevoUsuario.clave,
+                                      //           correo: nuevoUsuario.correo,
+                                      //           estatus: nuevoUsuario.estatus,
+                                      //           fechaCreacion:
+                                      //               nuevoUsuario.fechaCreacion,
+                                      //           idCategoria:
+                                      //               nuevoUsuario.idCategoria,
+                                      //           descripcion:
+                                      //               nuevoUsuario.descripcion,
+                                      //           logo: valor,
+                                      //           url: nuevoUsuario.url),
+                                      // ),
+                                      ),
                                 ],
                               ),
                             ],

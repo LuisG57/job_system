@@ -14,6 +14,7 @@ class UsuarioProvedor with ChangeNotifier {
       final response = await http.post(url,
           body: json.encode({
             // 'idUsuario': 1,
+
             'nombre': user.nombre,
             'apellido': user.apellido,
             'idTipoUsuario': 1,
@@ -23,8 +24,9 @@ class UsuarioProvedor with ChangeNotifier {
             'fechaCreacion': DateTime.now().toIso8601String(),
             'idCategoria': 1,
             'descripcion': user.descripcion,
-            'logo': user.logo,
-            'url': user.url,
+            'nombreArchivo': user.logo,
+            'url': user.logo,
+            'base64Image': user.url,
 
             // "nombre": "pupy",
             // "apellido": "frias",
@@ -44,20 +46,28 @@ class UsuarioProvedor with ChangeNotifier {
           });
 
       print('llegaste');
+      print(user.logo);
 
-      final newUsuario = Usuario(
-          idUsuario: json.decode(response.body)['name '],
-          nombre: user.nombre,
-          apellido: user.apellido,
-          idTipoUsuario: user.idTipoUsuario,
-          clave: user.clave,
-          correo: user.correo,
-          estatus: user.estatus,
-          fechaCreacion: user.fechaCreacion,
-          idCategoria: user.idCategoria,
-          descripcion: user.descripcion,
-          logo: user.logo,
-          url: user.url);
+      // final newUsuario = Usuario(
+      //     idUsuario: json.decode(response.body)['name '],
+      //     nombre: user.nombre,
+      //     apellido: user.apellido,
+      //     idTipoUsuario: user.idTipoUsuario,
+      //     clave: user.clave,
+      //     correo: user.correo,
+      //     estatus: user.estatus,
+      //     fechaCreacion: user.fechaCreacion,
+      //     idCategoria: user.idCategoria,
+      //     descripcion: user.descripcion,
+      //     logo: user.logo,
+      //     url: user.url);
+      print(response.statusCode);
+      print(response.body);
+      print(response);
+      print(response.reasonPhrase);
+      print(response.headers);
+      print(response.request);
+      print(response.isRedirect);
     } catch (error) {
       print(error);
       throw error;
