@@ -287,8 +287,7 @@ class _SignUpScreenPosterState extends State<SignUpScreenPoster> {
                                     width: 300,
                                     child: TextFormField(
                                       decoration: InputDecoration(
-                                          hintText:
-                                              'Nombre imagen con extención'),
+                                          hintText: 'Pagina Web Url'),
                                       textInputAction: TextInputAction.next,
                                       onSaved: (valor) => nuevoUsuario =
                                           Usuario(
