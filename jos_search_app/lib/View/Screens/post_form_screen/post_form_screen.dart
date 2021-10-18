@@ -239,7 +239,31 @@ class _PostFormScreenState extends State<PostFormScreen> {
                         // crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(
-                            width: 625,
+                            width: 300,
+                            child: TextFormField(
+                              decoration:
+                                  InputDecoration(hintText: 'Sitio Web'),
+                              textInputAction: TextInputAction.next,
+                              onSaved: (valor) => nuevoPuesto = PuestoItem(
+                                  idPuesto: 0,
+                                  compania: nuevoPuesto.compania,
+                                  posicion: nuevoPuesto.posicion,
+                                  ubicacion: nuevoPuesto.ubicacion,
+                                  url: valor,
+                                  idCategoria: nuevoPuesto.idCategoria,
+                                  idTipoJornada: nuevoPuesto.idTipoJornada,
+                                  descripcion: nuevoPuesto.descripcion,
+                                  idUsuario: nuevoPuesto.idUsuario,
+                                  estatus: nuevoPuesto.estatus,
+                                  fecha: nuevoPuesto.fecha,
+                                  correoContacto: nuevoPuesto.correoContacto),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 25,
+                          ),
+                          Container(
+                            width: 300,
                             child: TextFormField(
                               decoration:
                                   InputDecoration(hintText: 'Ubicación'),
@@ -296,7 +320,7 @@ class _PostFormScreenState extends State<PostFormScreen> {
                                 formKey.currentState?.save();
                                 final provedor =
                                     Provider.of<Puesto>(context, listen: false);
-                                provedor.addPuestoItem(nuevoPuesto);
+                                provedor.addPuestoItem(nuevoPuesto, context);
 
                                 Navigator.pushNamed(
                                     context, FeedScreen.routeName);

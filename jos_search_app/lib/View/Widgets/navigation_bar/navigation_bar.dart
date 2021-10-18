@@ -32,10 +32,15 @@ class NavigationBar extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Text(
-                      'Acerca de nosotros',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, AboutScreen.routeName);
+                      },
+                      child: Text(
+                        'Acerca de nosotros',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
                     ),
                     SizedBox(width: 50),
                     TextButton(

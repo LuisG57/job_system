@@ -1,10 +1,16 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:jos_search_app/View/Screens/feed_screen.dart';
 import 'package:jos_search_app/View/Screens/sign_in_screen.dart';
 import 'package:jos_search_app/View/Widgets/form_widgets/sign_up_button.dart';
 import 'package:jos_search_app/View/Widgets/form_widgets/sign_up_text_form_field.dart';
 import 'package:jos_search_app/View/Widgets/gradient_background/gradient_background.dart';
 import 'package:jos_search_app/View/Widgets/gradient_background/gradient_background_white_board.dart';
+import 'package:jos_search_app/providers/login_provedor.dart';
 import 'package:jos_search_app/providers/usuario.dart';
+import 'package:jos_search_app/providers/usuario_provedor.dart';
+import 'package:provider/provider.dart';
 
 class SignUpScreenSearcher extends StatefulWidget {
   const SignUpScreenSearcher({Key? key}) : super(key: key);
@@ -15,11 +21,12 @@ class SignUpScreenSearcher extends StatefulWidget {
 }
 
 class _SignUpScreenSearcherState extends State<SignUpScreenSearcher> {
+  final formKey = GlobalKey<FormState>();
   var nuevoUsuario = Usuario(
       idUsuario: 0,
       nombre: '',
       apellido: '',
-      idTipoUsuario: '',
+      idTipoUsuario: 'User',
       clave: '',
       correo: '',
       estatus: true,
@@ -93,6 +100,7 @@ class _SignUpScreenSearcherState extends State<SignUpScreenSearcher> {
                       ),
                       Expanded(
                         child: Form(
+                          key: formKey,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
@@ -105,6 +113,23 @@ class _SignUpScreenSearcherState extends State<SignUpScreenSearcher> {
                                       decoration:
                                           InputDecoration(hintText: 'Nombre'),
                                       textInputAction: TextInputAction.done,
+                                      onSaved: (valor) => nuevoUsuario =
+                                          Usuario(
+                                              idUsuario: 0,
+                                              nombre: valor,
+                                              apellido: nuevoUsuario.apellido,
+                                              idTipoUsuario: 'User',
+                                              clave: nuevoUsuario.clave,
+                                              correo: nuevoUsuario.correo,
+                                              estatus: nuevoUsuario.estatus,
+                                              fechaCreacion:
+                                                  nuevoUsuario.fechaCreacion,
+                                              idCategoria:
+                                                  nuevoUsuario.idCategoria,
+                                              descripcion:
+                                                  nuevoUsuario.descripcion,
+                                              logo: nuevoUsuario.logo,
+                                              url: nuevoUsuario.url),
                                     ),
                                   ),
                                   SizedBox(
@@ -115,6 +140,25 @@ class _SignUpScreenSearcherState extends State<SignUpScreenSearcher> {
                                     child: TextFormField(
                                       decoration:
                                           InputDecoration(hintText: 'Apellido'),
+                                      textInputAction: TextInputAction.next,
+                                      onSaved: (valor) => nuevoUsuario =
+                                          Usuario(
+                                              idUsuario: 0,
+                                              nombre: nuevoUsuario.nombre,
+                                              apellido: valor,
+                                              idTipoUsuario:
+                                                  nuevoUsuario.idTipoUsuario,
+                                              clave: nuevoUsuario.clave,
+                                              correo: nuevoUsuario.correo,
+                                              estatus: nuevoUsuario.estatus,
+                                              fechaCreacion:
+                                                  nuevoUsuario.fechaCreacion,
+                                              idCategoria:
+                                                  nuevoUsuario.idCategoria,
+                                              descripcion:
+                                                  nuevoUsuario.descripcion,
+                                              logo: nuevoUsuario.logo,
+                                              url: nuevoUsuario.url),
                                     ),
                                   ),
                                 ],
@@ -127,6 +171,25 @@ class _SignUpScreenSearcherState extends State<SignUpScreenSearcher> {
                                     child: TextFormField(
                                       decoration: InputDecoration(
                                           hintText: 'Correo Electronico'),
+                                      textInputAction: TextInputAction.next,
+                                      onSaved: (valor) => nuevoUsuario =
+                                          Usuario(
+                                              idUsuario: 0,
+                                              nombre: nuevoUsuario.nombre,
+                                              apellido: nuevoUsuario.apellido,
+                                              idTipoUsuario:
+                                                  nuevoUsuario.idTipoUsuario,
+                                              clave: nuevoUsuario.clave,
+                                              correo: valor,
+                                              estatus: nuevoUsuario.estatus,
+                                              fechaCreacion:
+                                                  nuevoUsuario.fechaCreacion,
+                                              idCategoria:
+                                                  nuevoUsuario.idCategoria,
+                                              descripcion:
+                                                  nuevoUsuario.descripcion,
+                                              logo: nuevoUsuario.logo,
+                                              url: nuevoUsuario.url),
                                     ),
                                   ),
                                   SizedBox(
@@ -137,6 +200,26 @@ class _SignUpScreenSearcherState extends State<SignUpScreenSearcher> {
                                     child: TextFormField(
                                       decoration: InputDecoration(
                                           hintText: 'Contraseña'),
+                                      textInputAction: TextInputAction.next,
+                                      obscureText: true,
+                                      onSaved: (valor) => nuevoUsuario =
+                                          Usuario(
+                                              idUsuario: 0,
+                                              nombre: nuevoUsuario.nombre,
+                                              apellido: nuevoUsuario.apellido,
+                                              idTipoUsuario:
+                                                  nuevoUsuario.idTipoUsuario,
+                                              clave: valor,
+                                              correo: nuevoUsuario.correo,
+                                              estatus: nuevoUsuario.estatus,
+                                              fechaCreacion:
+                                                  nuevoUsuario.fechaCreacion,
+                                              idCategoria:
+                                                  nuevoUsuario.idCategoria,
+                                              descripcion:
+                                                  nuevoUsuario.descripcion,
+                                              logo: nuevoUsuario.logo,
+                                              url: nuevoUsuario.url),
                                     ),
                                   ),
                                 ],
@@ -144,18 +227,37 @@ class _SignUpScreenSearcherState extends State<SignUpScreenSearcher> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
+                                  // Container(
+                                  //   width: 350,
+                                  //   child: TextFormField(
+                                  //     decoration: InputDecoration(
+                                  //         hintText: 'Numero de Teléfono'),
+                                  //     textInputAction: TextInputAction.next,
+                                  //     onSaved: (valor) => nuevoUsuario =
+                                  //         Usuario(
+                                  //             idUsuario: 0,
+                                  //             nombre: nuevoUsuario.nombre,
+                                  //             apellido: nuevoUsuario.apellido,
+                                  //             idTipoUsuario:
+                                  //                 nuevoUsuario.idTipoUsuario,
+                                  //             clave: nuevoUsuario.clave,
+                                  //             correo: nuevoUsuario.correo,
+                                  //             estatus: nuevoUsuario.estatus,
+                                  //             fechaCreacion:
+                                  //                 nuevoUsuario.fechaCreacion,
+                                  //             idCategoria:
+                                  //                 nuevoUsuario.idCategoria,
+                                  //             descripcion:
+                                  //                 nuevoUsuario.descripcion,
+                                  //             logo: nuevoUsuario.logo,
+                                  //             url: nuevoUsuario.url),
+                                  //   ),
+                                  // ),
+                                  // SizedBox(
+                                  //   width: 25,
+                                  // ),
                                   Container(
-                                    width: 350,
-                                    child: TextFormField(
-                                      decoration: InputDecoration(
-                                          hintText: 'Numero de Teléfono'),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 25,
-                                  ),
-                                  Container(
-                                    width: 250,
+                                    width: 625,
                                     child: DropdownButtonFormField<String>(
                                       items: [
                                         DropdownMenuItem<String>(
@@ -182,6 +284,22 @@ class _SignUpScreenSearcherState extends State<SignUpScreenSearcher> {
                                 child: Container(
                                   width: 625,
                                   child: TextFormField(
+                                    textInputAction: TextInputAction.next,
+                                    onSaved: (valor) => nuevoUsuario = Usuario(
+                                        idUsuario: 0,
+                                        nombre: nuevoUsuario.nombre,
+                                        apellido: nuevoUsuario.apellido,
+                                        idTipoUsuario:
+                                            nuevoUsuario.idTipoUsuario,
+                                        clave: nuevoUsuario.clave,
+                                        correo: nuevoUsuario.correo,
+                                        estatus: nuevoUsuario.estatus,
+                                        fechaCreacion:
+                                            nuevoUsuario.fechaCreacion,
+                                        idCategoria: nuevoUsuario.idCategoria,
+                                        descripcion: valor,
+                                        logo: nuevoUsuario.logo,
+                                        url: nuevoUsuario.url),
                                     decoration: InputDecoration(
                                         hintText: 'Descripcion...',
                                         border: OutlineInputBorder()),
@@ -193,7 +311,29 @@ class _SignUpScreenSearcherState extends State<SignUpScreenSearcher> {
                           ),
                         ),
                       ),
-                      SignUpButton(buttonText: 'Crear Cuenta', function: () {}),
+                      SignUpButton(
+                          buttonText: 'Crear Cuenta',
+                          function: () {
+                            formKey.currentState?.save();
+                            final nuevousuario = Provider.of<UsuarioProvedor>(
+                                context,
+                                listen: false);
+                            nuevousuario
+                                .createAccount(nuevoUsuario)
+                                .then((value) {
+                              var provider = Provider.of<UserAuthService>(
+                                  context,
+                                  listen: false);
+                              provider
+                                  .userAuth(
+                                      nuevoUsuario.correo, nuevoUsuario.clave)
+                                  .then((value) {
+                                print(value);
+                                Navigator.pushReplacementNamed(
+                                    context, FeedScreen.routeName);
+                              });
+                            });
+                          }),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 16.0),
                         child: Row(

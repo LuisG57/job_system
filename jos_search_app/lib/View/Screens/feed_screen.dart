@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jos_search_app/providers/login_provedor.dart';
 import 'package:jos_search_app/providers/puesto.dart';
 import 'package:provider/provider.dart';
 // import 'dart:io' show Platform;
@@ -18,6 +19,8 @@ class FeedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<UserAuthService>(context, listen: true);
+    var user = provider.user;
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     final provedor = Provider.of<Puesto>(context, listen: false);
@@ -58,7 +61,9 @@ class FeedScreen extends StatelessWidget {
                                 //   },
                                 // ),
                                 const Expanded(child: SizedBox()),
-                                PostJobButton(),
+                                user.idTipoUsuario != 2
+                                    ? PostJobButton()
+                                    : Text(''),
                               ],
                             ),
                             const CustomDivider(

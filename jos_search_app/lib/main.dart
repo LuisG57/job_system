@@ -5,6 +5,7 @@ import 'package:jos_search_app/View/Screens/sign_screens/sign_up_screen_searcher
 import 'package:jos_search_app/View/Screens/sign_screens/sign_up_screen_poster.dart';
 import 'package:jos_search_app/View/Widgets/navigation_bar/navigation_bar.dart'
     as nb;
+import 'package:jos_search_app/providers/login_provedor.dart';
 import 'package:jos_search_app/providers/puesto.dart';
 import 'package:jos_search_app/providers/usuario.dart';
 import 'package:jos_search_app/providers/usuario_provedor.dart';
@@ -26,7 +27,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (ctx) => UsuarioProvedor()),
-        ChangeNotifierProvider(create: (ctx) => Puesto())
+        ChangeNotifierProvider(create: (ctx) => Puesto()),
+        ChangeNotifierProvider(create: (ctx) => UserAuthService()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

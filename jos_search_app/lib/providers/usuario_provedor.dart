@@ -9,7 +9,15 @@ class UsuarioProvedor with ChangeNotifier {
     // final url = Uri.http('http://45.35/api', '/Usuario');
 
     // print(user.nombre.toString());
-
+    var idtipousuario;
+    if (user.idTipoUsuario == 'User') {
+      idtipousuario = 2;
+    }
+    if (user.idTipoUsuario == 'Poster') {
+      idtipousuario = 3;
+    } else {
+      idtipousuario = 1;
+    }
     try {
       final response = await http.post(url,
           body: json.encode({
@@ -17,12 +25,12 @@ class UsuarioProvedor with ChangeNotifier {
 
             'nombre': user.nombre,
             'apellido': user.apellido,
-            'idTipoUsuario': 1,
+            'idTipoUsuario': idtipousuario,
             'clave': user.clave,
             'correo': user.correo,
             'estatus': true,
             'fechaCreacion': DateTime.now().toIso8601String(),
-            'idCategoria': 1,
+            'idCategoria': 2,
             'descripcion': user.descripcion,
             'nombreArchivo': user.logo,
             'url': user.logo,

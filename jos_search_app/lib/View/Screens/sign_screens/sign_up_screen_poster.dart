@@ -8,9 +8,12 @@ import 'package:jos_search_app/View/Widgets/form_widgets/sign_up_button.dart';
 import 'package:jos_search_app/View/Widgets/form_widgets/sign_up_text_form_field.dart';
 import 'package:jos_search_app/View/Widgets/gradient_background/gradient_background.dart';
 import 'package:jos_search_app/View/Widgets/gradient_background/gradient_background_white_board.dart';
+import 'package:jos_search_app/providers/login_provedor.dart';
 import 'package:jos_search_app/providers/usuario.dart';
 import 'package:jos_search_app/providers/usuario_provedor.dart';
 import 'package:provider/provider.dart';
+
+import '../feed_screen.dart';
 
 class SignUpScreenPoster extends StatefulWidget {
   const SignUpScreenPoster({Key? key}) : super(key: key);
@@ -26,7 +29,7 @@ class _SignUpScreenPosterState extends State<SignUpScreenPoster> {
       idUsuario: 0,
       nombre: '',
       apellido: '',
-      idTipoUsuario: '',
+      idTipoUsuario: 'Poster',
       clave: '',
       correo: '',
       estatus: true,
@@ -202,6 +205,7 @@ class _SignUpScreenPosterState extends State<SignUpScreenPoster> {
                                       decoration: InputDecoration(
                                           hintText: 'Contraseña'),
                                       textInputAction: TextInputAction.next,
+                                      obscureText: true,
                                       onSaved: (valor) => nuevoUsuario =
                                           Usuario(
                                               idUsuario: 0,
@@ -282,8 +286,9 @@ class _SignUpScreenPosterState extends State<SignUpScreenPoster> {
                                   Container(
                                     width: 300,
                                     child: TextFormField(
-                                      decoration:
-                                          InputDecoration(hintText: 'Web site'),
+                                      decoration: InputDecoration(
+                                          hintText:
+                                              'Nombre imagen con extención'),
                                       textInputAction: TextInputAction.next,
                                       onSaved: (valor) => nuevoUsuario =
                                           Usuario(
@@ -332,8 +337,7 @@ class _SignUpScreenPosterState extends State<SignUpScreenPoster> {
                                                 idUsuario: null,
                                                 nombre: nuevoUsuario.nombre,
                                                 apellido: nuevoUsuario.apellido,
-                                                idTipoUsuario:
-                                                    nuevoUsuario.idTipoUsuario,
+                                                idTipoUsuario: 'Poster',
                                                 clave: nuevoUsuario.clave,
                                                 correo: nuevoUsuario.correo,
                                                 estatus: nuevoUsuario.estatus,
@@ -390,7 +394,21 @@ class _SignUpScreenPosterState extends State<SignUpScreenPoster> {
                             final nuevousuario = Provider.of<UsuarioProvedor>(
                                 context,
                                 listen: false);
-                            nuevousuario.createAccount(nuevoUsuario);
+                            nuevousuario
+                                .createAccount(nuevoUsuario)
+                                .then((value) {
+                              var provider = Provider.of<UserAuthService>(
+                                  context,
+                                  listen: false);
+                              provider
+                                  .userAuth(
+                                      nuevoUsuario.correo, nuevoUsuario.clave)
+                                  .then((value) {
+                                print(value);
+                                Navigator.pushReplacementNamed(
+                                    context, FeedScreen.routeName);
+                              });
+                            });
                             // print(nuevoUsuario.toString());
                           }),
                       Padding(

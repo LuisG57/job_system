@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:jos_search_app/View/Screens/feed_screen.dart';
 import 'package:jos_search_app/View/Widgets/navigation_bar/navigation_bar.dart'
     as nb;
+import 'package:jos_search_app/providers/login_provedor.dart';
+import 'package:provider/provider.dart';
 
 class GradientTopBar extends StatelessWidget {
   GradientTopBar({this.option = false});
@@ -9,6 +11,9 @@ class GradientTopBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provedor = Provider.of<UserAuthService>(context, listen: false);
+    var usuario = provedor.user;
+
     return Container(
       decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -44,7 +49,7 @@ class GradientTopBar extends StatelessWidget {
                   : Text(''),
               CircleAvatar(
                 child: Text(
-                  'FG',
+                  '${usuario.nombre!.substring(0, 1)}${usuario.apellido!.substring(0, 1)}',
                   style: TextStyle(color: Colors.white),
                 ),
                 backgroundColor: Colors.lightBlue,
@@ -57,10 +62,10 @@ class GradientTopBar extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Frankelly Guzman'),
+                      Text('${usuario.nombre} ${usuario.apellido}'),
                       TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(
+                          Navigator.pushReplacementNamed(
                               context, nb.NavigationBar.routeName);
                         },
                         child: Text('Log out'),
@@ -71,7 +76,8 @@ class GradientTopBar extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 16, bottom: 26),
-                child: Text('Poster'),
+                child:
+                    Text(usuario.idTipoUsuario == 1 ? 'Posteador' : 'Buscador'),
               )
             ],
           ),

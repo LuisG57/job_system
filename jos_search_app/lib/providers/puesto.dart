@@ -64,8 +64,13 @@
 //       };
 // }
 
+import 'dart:js';
+
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:jos_search_app/providers/login_provedor.dart';
+import 'package:provider/provider.dart';
 import 'dart:convert';
 import '../models/http_exceptions.dart';
 
@@ -109,10 +114,12 @@ class Puesto with ChangeNotifier {
 
   // Map<String, PuestoItem> _puestoItems = {};
 
-  Future<void> addPuestoItem(PuestoItem puestoitem) async {
+  Future<void> addPuestoItem(
+      PuestoItem puestoitem, BuildContext context) async {
     final url = Uri.parse('http://45.35.64.173:9095/api/Puestos');
 
     try {
+      var provider = Provider.of<UserAuthService>(context, listen: false);
       final response = await http.post(url,
           body: json.encode({
             // "compañia": puestoitem.compania,
@@ -129,8 +136,8 @@ class Puesto with ChangeNotifier {
 
             "compañia": puestoitem.compania,
             "idTipoJornada": puestoitem.idTipoJornada,
-            "logo": "url",
-            "url": "url",
+            "logo": provider.user.url,
+            "url": puestoitem.url,
             "posicion": puestoitem.posicion,
             "ubicacion": puestoitem.ubicacion,
             "idCategoria": 1,
@@ -158,12 +165,11 @@ class Puesto with ChangeNotifier {
           correoContacto: '');
 
       _puestoItems.add(newPuestoItem);
+      notifyListeners();
     } catch (error) {
       print(error);
       throw error;
     }
-
-    notifyListeners();
   }
 
   Future<void> updateProduct(String id, PuestoItem newPuestoItem) async {
